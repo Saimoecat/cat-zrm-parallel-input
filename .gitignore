@@ -1,0 +1,15 @@
+.DS_Store
+/.idea/
+/Fonts/
+/sync/
+/build/
+/trash/
+/recorder/baidu.txt
+/recorder/recorder_*.txt
+zrm.userdb.txt
+*.iml
+weasel.custom.yaml
+default.custom.yaml
+*.plist
+installation.yaml
+user.yaml

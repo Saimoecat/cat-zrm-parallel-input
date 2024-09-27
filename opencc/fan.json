@@ -1,0 +1,16 @@
+{
+  "name": "Chinese to Fan",
+  "segmentation": {
+    "type": "mmseg",
+    "dict": {
+      "type": "text",
+      "file": "fan.txt"
+    }
+  },
+  "conversion_chain": [{
+    "dict": {
+      "type": "text",
+      "file": "fan.txt"
+    }
+  }]
+}

@@ -1,0 +1,8 @@
+Windows 平台（小狼毫 >= 0.14.0）
+	将windows文件夹下的所有文件复制到小狼毫的程序文件夹下
+	
+Linux 平台（librime 需编译 lua 支持）
+	将linux文件夹下的所有文件复制到 /usr/local/lib/lua/$LUAV 下
+	
+macOS 平台（鼠须管/小企鹅）
+	将macos文件夹下的所有文件复制到 /usr/local/lib/lua/$LUAV 下
