@@ -951,6 +951,13 @@ local function processor(key_event, env)
 			return 1
 		end
 	end
+
+	-- Enter
+	--[[
+	if (key_event.keycode == 65293) then
+
+	end
+	--]]
 	
 	--Esc 恢复保留状态
 	--[[

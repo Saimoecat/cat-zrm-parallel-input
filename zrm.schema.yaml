@@ -122,7 +122,7 @@ key_binder:
     #- { when: composing, accept: Shift+Shift_L, send: KP_2 }
     #- { when: composing, accept: Shift+Shift_R, send: KP_3 }
     
-    - { when: composing, accept: Return, send: Escape }
+    - { when: composing, accept: "Return", send: "Escape" }
     #- { when: composing, accept: Tab, send: "Shift+Right" }
     - { when: composing, accept: Left, send: "Page_Up" }
     - { when: composing, accept: Right, send: "Page_Down" }
