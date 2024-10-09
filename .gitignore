@@ -12,5 +12,4 @@ weasel.custom.yaml
 default.custom.yaml
 *.plist
 installation.yaml
-grammar.yaml
 user.yaml

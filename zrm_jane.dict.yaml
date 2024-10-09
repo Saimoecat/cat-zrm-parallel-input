@@ -3,7 +3,7 @@
 # license: CC-BY 4.0
 ---
 name: zrm_jane
-version: "20241006"
+version: "20241009"
 sort: by_weight
 use_preset_vocabulary: false
 ...
@@ -19,6 +19,7 @@ use_preset_vocabulary: false
 没大没小	aw;MDMXXX	0
 为虎作伥	aw;WHZIII	0
 庸人自扰	aw;YRZRRR	0
+有什么意思	aw;YUMYSI	0
 幸灾乐祸	aw;XZLHHH	0
 有期徒刑	aw;YQTXXX	0
 天诛地灭	aw;TVDMMM	0
@@ -26,11 +27,13 @@ use_preset_vocabulary: false
 无微不至	aw;WWBVVV	0
 惴惴不安	aw;VVBAAA	0
 贪生怕死	aw;TUPSSS	0
+又有什么意义	aw;YYUMYY	0
 故障转移	aw;GVVYYY	0
 走上正道	aw;ZUVDDD	0
 一些东西	aw;YXDXXX	0
 与此同时	aw;YCTUUU	0
 查看成绩	aw;IKIJJJ	0
+掐头去尾	aw;QTQWWW	0
 不惑之年	aw;BHVNNN	0
 聚精会神	aw;JJHUUU	0
 吹毛求疵	aw;IMQCCC	0
@@ -117,6 +120,7 @@ use_preset_vocabulary: false
 远道而来	aw;YDELLL	0
 侃侃而谈	aw;KKETTT	0
 有什么问题	aw;YUMWTI	0
+紧皱着眉头	aw;JVVMTB	0
 躲躲闪闪	aw;DDUUUU	0
 居高临下	aw;JGLXXX	0
 百家争鸣	aw;BJVMMM	0
@@ -173,6 +177,7 @@ use_preset_vocabulary: false
 谈虎色变	aw;THSBBB	0
 心甘情愿	aw;XGQYYY	0
 看守内阁	aw;KUNGGG	0
+一锤子买卖	aw;YIZMML	0
 酸甜苦辣	aw;STKLLL	0
 小家碧玉	aw;XJBYYY	0
 名不虚传	aw;MBXIII	0
@@ -252,6 +257,7 @@ use_preset_vocabulary: false
 新闻事件	aw;XWUJJJ	0
 价廉物美	aw;JLWMMM	0
 会议投屏	aw;HYTPPP	0
+邪门歪道	aw;XMWDDD	0
 身心健康	aw;UXJKKK	0
 洞若观火	aw;DRGHHH	0
 马不停蹄	aw;MBTTTT	0
@@ -267,6 +273,7 @@ use_preset_vocabulary: false
 没啥难度	aw;MUNDDD	0
 脊椎动物	aw;JVDWWW	0
 是一个不错的选择	aw;UYGBXZ	0
+费力不讨好	aw;FLBTHK	0
 多么清脆	aw;DMQCCC	0
 前天上午	aw;QTUWWW	0
 晴天霹雳	aw;QTPLLL	0
@@ -285,6 +292,7 @@ use_preset_vocabulary: false
 童叟无欺	aw;TSWQQQ	0
 战战兢兢	aw;VVJJJJ	0
 腥风血雨	aw;XFXYYY	0
+更上一层楼	aw;GUYCLB	0
 喜笑颜开	aw;XXYKKK	0
 具体方案	aw;JTFAAA	0
 无坚不摧	aw;WJBCCC	0
@@ -314,6 +322,7 @@ use_preset_vocabulary: false
 干净利落	aw;GJLLLL	0
 心灰意冷	aw;XHYLLL	0
 阿拉斯加	aw;ALSJJJ	0
+什么都可以	aw;UMDKYI	0
 悬而未决	aw;XEWJJJ	0
 纹丝不动	aw;WSBDDD	0
 信誓旦旦	aw;XUDDDD	0
@@ -324,6 +333,7 @@ use_preset_vocabulary: false
 不计其数	aw;BJQUUU	0
 意识形态	aw;YUXTTT	0
 总有适合你的	aw;ZYUHND	0
+三下五除二	aw;SXWIER	0
 甚至有人	aw;UVYRRR	0
 任重道远	aw;RVDYYY	0
 恐怖如斯	aw;KBRSSS	0
@@ -390,13 +400,17 @@ use_preset_vocabulary: false
 小心谨慎	aw;XXJUUU	0
 赫赫有名	aw;HHYMMM	0
 后起之秀	aw;HQVXXX	0
+存不存在	aw;CBCZZZ	0
 大口大口	aw;DKDKKK	0
+坐山观虎斗	aw;ZUGHDB	0
 好像有道理	aw;HXYDLI	0
 没有填写	aw;MYTXXX	0
 但是你先别急	aw;DUNXBJ	0
 另一件事	aw;LYJUUU	0
 死里逃生	aw;SLTUUU	0
+为了避免	aw;WLBMMM	0
 五讲四美	aw;WJSMMM	0
+照葫芦画瓢	aw;VHLHPC	0
 运输管理	aw;YUGLLL	0
 牵强附会	aw;QQFHHH	0
 行为能力	aw;XWNLLL	0
@@ -412,6 +426,7 @@ use_preset_vocabulary: false
 伤得很重	aw;UDHVVV	0
 息息相关	aw;XXXGGG	0
 老弱病残	aw;LRBCCC	0
+又有什么用	aw;YYUMYS	0
 前呼后拥	aw;QHHYYY	0
 坦诚相待	aw;TIXDDD	0
 心安理得	aw;XALDDD	0
@@ -451,15 +466,18 @@ use_preset_vocabulary: false
 测试阶段	aw;CUJDDD	0
 百无禁忌	aw;BWJJJJ	0
 仁义道德	aw;RYDDDD	0
+功到自然成	aw;GDZRIG	0
 喜从天降	aw;XCTJJJ	0
 咬牙切齿	aw;YYQIII	0
 土头土脑	aw;TTTNNN	0
 跳芭蕾舞	aw;TBLWWW	0
 语焉不详	aw;YYBXXX	0
+从现在开始	aw;CXZKUI	0
 后来居上	aw;HLJUUU	0
 秋高气爽	aw;QGQUUU	0
 强取豪夺	aw;QQHDDD	0
 两个小时	aw;LGXUUU	0
+电子游戏机	aw;DZYXJI	0
 尽如人意	aw;JRRYYY	0
 言之凿凿	aw;YVZZZZ	0
 寅吃卯粮	aw;YIMLLL	0
@@ -543,11 +561,13 @@ use_preset_vocabulary: false
 分崩离析	aw;FBLXXX	0
 泡沫经济	aw;PMJJJJ	0
 街头巷尾	aw;JTXWWW	0
+计算机病毒	aw;JSJBDU	0
 络绎不绝	aw;LYBJJJ	0
 流言蜚语	aw;LYFYYY	0
 束手就擒	aw;UUJQQQ	0
 投笔从戎	aw;TBCRRR	0
 亭亭玉立	aw;TTYLLL	0
+吃硬不吃软	aw;IYBIRR	0
 今非昔比	aw;JFXBBB	0
 同心协力	aw;TXXLLL	0
 腰缠万贯	aw;YIWGGG	0
@@ -623,6 +643,7 @@ use_preset_vocabulary: false
 上下左右	aw;UXZYYY	0
 公私合营	aw;GSHYYY	0
 明辨是非	aw;MBUFFF	0
+隔行如隔山	aw;GHRGUJ	0
 发达国家	aw;FDGJJJ	0
 这一事实	aw;VYUUUU	0
 奋发有为	aw;FFYWWW	0
@@ -637,6 +658,7 @@ use_preset_vocabulary: false
 学会了吗	aw;XHLMMM	0
 眼疾手快	aw;YJUKKK	0
 誓不罢休	aw;UBBXXX	0
+可杀不可辱	aw;KUBKRU	0
 无忧无虑	aw;WYWLLL	0
 刚愎自用	aw;GBZYYY	0
 利令智昏	aw;LLVHHH	0
@@ -670,6 +692,8 @@ use_preset_vocabulary: false
 下不了台	aw;XBLTTT	0
 婆婆妈妈	aw;PPMMMM	0
 有生之年	aw;YUVNNN	0
+现在开始	aw;XZKUUU	0
+民族共同语	aw;MZGTYU	0
 因势利导	aw;YULDDD	0
 扎扎实实	aw;VVUUUU	0
 阅读在线教程	aw;YDZXJI	0
@@ -753,6 +777,7 @@ use_preset_vocabulary: false
 破釜沉舟	aw;PFIVVV	0
 随遇而安	aw;SYEAAA	0
 独门独院	aw;DMDYYY	0
+电子计算机	aw;DZJSJI	0
 剑拔弩张	aw;JBNVVV	0
 默认情况	aw;MRQKKK	0
 血肉之躯	aw;XRVQQQ	0
@@ -769,6 +794,7 @@ use_preset_vocabulary: false
 深度定制	aw;UDDVVV	0
 构造函数	aw;GZHUUU	0
 鬼迷心窍	aw;GMXQQQ	0
+劳动生产率	aw;LDUILV	0
 取得根本性的突破	aw;QDGBTP	0
 出人意料	aw;IRYLLL	0
 夫唱妇随	aw;FIFSSS	0
@@ -787,6 +813,7 @@ use_preset_vocabulary: false
 哔哩哔哩	aw;BLBLLL	0
 组织生活	aw;ZVUHHH	0
 到底怎么回事	aw;DDZMHU	0
+五四青年节	aw;WSQNJX	0
 万里长城	aw;WLIIII	0
 亦步亦趋	aw;YBYQQQ	0
 惊涛骇浪	aw;JTHLLL	0
@@ -920,6 +947,7 @@ use_preset_vocabulary: false
 自娱自乐	aw;ZYZLLL	0
 不一定安全	aw;BYDAQR	0
 开始使用	aw;KUUYYY	0
+从早到晚	aw;CZDWWW	0
 翻山越岭	aw;FUYLLL	0
 尽善尽美	aw;JUJMMM	0
 先声夺人	aw;XUDRRR	0
@@ -935,6 +963,7 @@ use_preset_vocabulary: false
 生吞活剥	aw;UTHBBB	0
 跨国公司	aw;KGGSSS	0
 后天下午	aw;HTXWWW	0
+我慢慢意识到	aw;WMMYUD	0
 不断创新	aw;BDIXXX	0
 藏污纳垢	aw;CWNGGG	0
 束手无策	aw;UUWCCC	0
@@ -945,6 +974,7 @@ use_preset_vocabulary: false
 借题发挥	aw;JTFHHH	0
 人民公社	aw;RMGUUU	0
 交通工具	aw;JTGJJJ	0
+好心办坏事	aw;HXBHUI	0
 纪念邮票	aw;JNYPPP	0
 花花世界	aw;HHUJJJ	0
 大张旗鼓	aw;DVQGGG	0
@@ -1094,6 +1124,7 @@ use_preset_vocabulary: false
 直言不讳	aw;VYBHHH	0
 一衣带水	aw;YYDUUU	0
 唇齿相依	aw;IIXYYY	0
+乱作一团	aw;LZYTTT	0
 血海深仇	aw;XHUIII	0
 我知道你很急	aw;WVDNHJ	0
 微乎其微	aw;WHQWWW	0
@@ -1108,12 +1139,15 @@ use_preset_vocabulary: false
 拥政爱民	aw;YVAMMM	0
 耳目一新	aw;EMYXXX	0
 快速编辑	aw;KSBJJJ	0
+吃软不吃硬	aw;IRBIYY	0
 出人头地	aw;IRTDDD	0
 能屈能伸	aw;NQNUUU	0
 千差万别	aw;QIWBBB	0
 气息奄奄	aw;QXYYYY	0
 不近人情	aw;BJRQQQ	0
 走在路上	aw;ZZLUUU	0
+无记名投票	aw;WJMTPC	0
+耕者有其田	aw;GVYQTM	0
 牵肠挂肚	aw;QIGDDD	0
 左邻右舍	aw;ZLYUUU	0
 此起彼伏	aw;CQBFFF	0
@@ -1165,6 +1199,7 @@ use_preset_vocabulary: false
 相提并论	aw;XTBLLL	0
 形形色色	aw;XXSSSS	0
 谈笑风生	aw;TXFUUU	0
+不为人知	aw;BWRVVV	0
 旗开得胜	aw;QKDUUU	0
 记忆犹新	aw;JYYXXX	0
 熟视无睹	aw;UUWDDD	0
@@ -1176,6 +1211,7 @@ use_preset_vocabulary: false
 老老少少	aw;LLUUUU	0
 直来直去	aw;VLVQQQ	0
 大智若愚	aw;DVRYYY	0
+其实并不难	aw;QUBBNJ	0
 风雨交加	aw;FYJJJJ	0
 雨一直下	aw;YYVXXX	0
 急转直下	aw;JVVXXX	0
@@ -1189,6 +1225,7 @@ use_preset_vocabulary: false
 不堪入目	aw;BKRMMM	0
 愤世嫉俗	aw;FUJSSS	0
 僧多粥少	aw;SDVUUU	0
+火焰喷射器	aw;HYPUQI	0
 大惑不解	aw;DHBJJJ	0
 回心转意	aw;HXVYYY	0
 秀色可餐	aw;XSKCCC	0
@@ -1262,6 +1299,7 @@ use_preset_vocabulary: false
 知识分子	aw;VUFZZZ	0
 怏怏不乐	aw;YYBLLL	0
 同病相怜	aw;TBXLLL	0
+贼喊捉贼	aw;ZHVZZZ	0
 数一数二	aw;UYUEEE	0
 冥顽不灵	aw;MWBLLL	0
 惊心动魄	aw;JXDPPP	0
@@ -1391,12 +1429,14 @@ use_preset_vocabulary: false
 舞文弄墨	aw;WWNMMM	0
 新鲜事物	aw;XXUWWW	0
 一尘不染	aw;YIBRRR	0
+一目十行	aw;YMUHHH	0
 同陌生人交谈	aw;TMURJT	0
 牵线搭桥	aw;QXDQQQ	0
 这么晚了	aw;VMWLLL	0
 公共厕所	aw;GGCSSS	0
 坚持不懈	aw;JIBXXX	0
 心有余悸	aw;XYYJJJ	0
+患难见知己	aw;HNJVJI	0
 想去哪就去哪	aw;XQNJQN	0
 结婚登记	aw;JHDJJJ	0
 不胜其烦	aw;BUQFFF	0
@@ -1438,6 +1478,7 @@ use_preset_vocabulary: false
 明清时期	aw;MQUQQQ	0
 枝繁叶茂	aw;VFYMMM	0
 耍嘴皮子	aw;UZPZZZ	0
+小巫见大巫	aw;XWJDWU	0
 心悦诚服	aw;XYIFFF	0
 天文数字	aw;TWUZZZ	0
 现在才刚刚开始	aw;XZCGKU	0
@@ -1488,6 +1529,7 @@ use_preset_vocabulary: false
 唯命是从	aw;WMUCCC	0
 爱屋及乌	aw;AWJWWW	0
 未解之迷	aw;WJVMMM	0
+可以看见	aw;KYKJJJ	0
 严阵以待	aw;YVYDDD	0
 于心不忍	aw;YXBRRR	0
 措手不及	aw;CUBJJJ	0
@@ -1498,12 +1540,14 @@ use_preset_vocabulary: false
 自然灾害	aw;ZRZHHH	0
 老骥伏枥	aw;LJFLLL	0
 胆大包天	aw;DDBTTT	0
+杀人不见血	aw;URBJXX	0
 再三再四	aw;ZSZSSS	0
 拖家带口	aw;TJDKKK	0
 如法炮制	aw;RFPVVV	0
 比比皆是	aw;BBJUUU	0
 异想天开	aw;YXTKKK	0
 另当别论	aw;LDBLLL	0
+谁会想到	aw;UHXDDD	0
 真真实实	aw;VVUUUU	0
 不修边幅	aw;BXBFFF	0
 家庭条件不好	aw;JTTJBH	0
@@ -1532,6 +1576,7 @@ use_preset_vocabulary: false
 千呼万唤	aw;QHWHHH	0
 弄假成真	aw;NJIVVV	0
 大有可为	aw;DYKWWW	0
+有始无终	aw;YUWVVV	0
 等闲视之	aw;DXUVVV	0
 这个时候	aw;VGUHHH	0
 十拿九稳	aw;UNJWWW	0
@@ -1544,6 +1589,7 @@ use_preset_vocabulary: false
 错落有致	aw;CLYVVV	0
 掌上电脑	aw;VUDNNN	0
 一般都是	aw;YBDUUU	0
+独木不成林	aw;DMBILN	0
 眼明目亮	aw;YMMLLL	0
 如临大敌	aw;RLDDDD	0
 陈规陋习	aw;IGLXXX	0
@@ -1561,8 +1607,10 @@ use_preset_vocabulary: false
 左右为难	aw;ZYWNNN	0
 回肠荡气	aw;HIDQQQ	0
 以身相许	aw;YUXXXX	0
+行行出状元	aw;HHIVYR	0
 奋起直追	aw;FQVVVV	0
 应有尽有	aw;YYJYYY	0
+顾全大局	aw;GQDJJJ	0
 易如反掌	aw;YRFVVV	0
 有些地方	aw;YXDFFF	0
 电子邮件	aw;DZYJJJ	0
@@ -1578,6 +1626,7 @@ use_preset_vocabulary: false
 阴差阳错	aw;YIYCCC	0
 轻车简从	aw;QIJCCC	0
 八面玲珑	aw;BMLLLL	0
+顾头不顾尾	aw;GTBGWZ	0
 顶功编码	aw;DGBMMM	0
 责无旁贷	aw;ZWPDDD	0
 积分兑换	aw;JFDHHH	0
@@ -1587,6 +1636,7 @@ use_preset_vocabulary: false
 持之以恒	aw;IVYHHH	0
 渐入佳境	aw;JRJJJJ	0
 兵不血刃	aw;BBXRRR	0
+天若有情	aw;TRYQQQ	0
 候机大厅	aw;HJDTTT	0
 眼光实在不行	aw;YGUZBX	0
 什么乱七八糟的东西	aw;UMLQDX	0
@@ -1666,6 +1716,7 @@ use_preset_vocabulary: false
 老谋深算	aw;LMUSSS	0
 心烦意乱	aw;XFYLLL	0
 修身养性	aw;XUYXXX	0
+一碗水端平	aw;YWUDPY	0
 引人深思	aw;YRUSSS	0
 风口浪尖	aw;FKLJJJ	0
 打印出库单	aw;DYIKDJ	0
@@ -1732,6 +1783,8 @@ use_preset_vocabulary: false
 言而无信	aw;YEWXXX	0
 无可置疑	aw;WKVYYY	0
 流连忘返	aw;LLWFFF	0
+顾前不顾后	aw;GQBGHB	0
+防患于未然	aw;FHYWRJ	0
 延年益寿	aw;YNYUUU	0
 找来找去	aw;VLVQQQ	0
 英姿飒爽	aw;YZSUUU	0
@@ -1756,6 +1809,7 @@ use_preset_vocabulary: false
 是什么意思	aw;UUMYSI	0
 逆反心理	aw;NFXLLL	0
 古色古香	aw;GSGXXX	0
+赶鸭子上架	aw;GYZUJW	0
 救命稻草	aw;JMDCCC	0
 绿色食品	aw;LSUPPP	0
 一派胡言	aw;YPHYYY	0
@@ -1783,6 +1837,7 @@ use_preset_vocabulary: false
 冤家路窄	aw;YJLVVV	0
 敬而远之	aw;JEYVVV	0
 戒骄戒躁	aw;JJJZZZ	0
+不知何许人	aw;BVHXRF	0
 速战速决	aw;SVSJJJ	0
 巧舌如簧	aw;QURHHH	0
 才高八斗	aw;CGBDDD	0
@@ -1849,6 +1904,7 @@ use_preset_vocabulary: false
 光彩夺目	aw;GCDMMM	0
 有备无患	aw;YBWHHH	0
 开源节流	aw;KYJLLL	0
+邓小平理论	aw;DXPLLP	0
 温情脉脉	aw;WQMMMM	0
 春寒料峭	aw;IHLQQQ	0
 狗血喷头	aw;GXPTTT	0
@@ -1857,6 +1913,7 @@ use_preset_vocabulary: false
 别无二致	aw;BWEVVV	0
 文本编辑器	aw;WBBJQI	0
 寸土寸金	aw;CTCJJJ	0
+那条裙子	aw;NTQZZZ	0
 掌上明珠	aw;VUMVVV	0
 保外就医	aw;BWJYYY	0
 爱憎分明	aw;AZFMMM	0
@@ -1891,6 +1948,7 @@ use_preset_vocabulary: false
 动人心弦	aw;DRXXXX	0
 学贯中西	aw;XGVXXX	0
 对号入座	aw;DHRZZZ	0
+学习英语	aw;XXYYYY	0
 联系电话	aw;LXDHHH	0
 暮气沉沉	aw;MQIIII	0
 发家致富	aw;FJVFFF	0
@@ -1928,6 +1986,7 @@ use_preset_vocabulary: false
 望尘莫及	aw;WIMJJJ	0
 众叛亲离	aw;VPQLLL	0
 怎么感觉	aw;ZMGJJJ	0
+绑在一起	aw;BZYQQQ	0
 雍容华贵	aw;YRHGGG	0
 人定胜天	aw;RDUTTT	0
 愁眉苦脸	aw;IMKLLL	0
@@ -1948,15 +2007,19 @@ use_preset_vocabulary: false
 狼心狗肺	aw;LXGFFF	0
 事出有因	aw;UIYYYY	0
 一马平川	aw;YMPIII	0
+山光水色	aw;UGUSSS	0
 说话的声音	aw;UHDUYN	0
+自寻短见	aw;ZXDJJJ	0
 紧锣密鼓	aw;JLMGGG	0
 和气生财	aw;HQUCCC	0
+无精打彩	aw;WJDCCC	0
 胆战心惊	aw;DVXJJJ	0
 囫囵吞枣	aw;HLTZZZ	0
 乌烟瘴气	aw;WYVQQQ	0
 独具一格	aw;DJYGGG	0
 武功高强	aw;WGGQQQ	0
 始作俑者	aw;UZYVVV	0
+进行研究	aw;JXYJJJ	0
 这种情况下	aw;VVQKXW	0
 两年之后	aw;LNVHHH	0
 齐心协力	aw;QXXLLL	0
@@ -2029,6 +2092,7 @@ use_preset_vocabulary: false
 国家机关	aw;GJJGGG	0
 太不像话了	aw;TBXHLE	0
 入库时间	aw;RKUJJJ	0
+懂得利用工具	aw;DDLYGJ	0
 斗转星移	aw;DVXYYY	0
 交货方式	aw;JHFUUU	0
 昏头昏脑	aw;HTHNNN	0
@@ -2128,9 +2192,11 @@ use_preset_vocabulary: false
 仓库管理	aw;CKGLLL	0
 积劳成疾	aw;JLIJJJ	0
 输入方案	aw;URFAAA	0
+居民身份证	aw;JMUFVG	0
 神罗天征	aw;ULTVVV	0
 一诺千金	aw;YNQJJJ	0
 打预防针	aw;DYFVVV	0
+笑不出来	aw;XBILLL	0
 将功赎罪	aw;JGUZZZ	0
 竞争机制	aw;JVJVVV	0
 有没有办法	aw;YMYBFA	0
@@ -2159,6 +2225,7 @@ use_preset_vocabulary: false
 难度增大	aw;NDZDDD	0
 一年半载	aw;YNBZZZ	0
 颜色各异	aw;YSGYYY	0
+八九不离十	aw;BJBLUI	0
 莎士比亚	aw;UUBYYY	0
 枪林弹雨	aw;QLDYYY	0
 对外开放	aw;DWKFFF	0
@@ -2189,10 +2256,12 @@ use_preset_vocabulary: false
 不伦不类	aw;BLBLLL	0
 不费吹灰之力	aw;BFIHVL	0
 当机立断	aw;DJLDDD	0
+宇宙空间	aw;YVKJJJ	0
 贼眉鼠眼	aw;ZMUYYY	0
 一如既往	aw;YRJWWW	0
 词不达意	aw;CBDYYY	0
 青春时光	aw;QIUGGG	0
+国际妇女节	aw;GJFNJX	0
 确认签收	aw;QRQUUU	0
 九牛二虎	aw;JNEHHH	0
 久负盛名	aw;JFUMMM	0
@@ -2255,6 +2324,8 @@ use_preset_vocabulary: false
 更好的办法	aw;GHDBFA	0
 知识学得还不够	aw;VUXDBG	0
 略胜一筹	aw;LUYIII	0
+笨鸟先飞	aw;BNXFFF	0
+大陆性气候	aw;DLXQHB	0
 面如死灰	aw;MRSHHH	0
 入库管理	aw;RKGLLL	0
 一触即发	aw;YIJFFF	0
@@ -2290,6 +2361,7 @@ use_preset_vocabulary: false
 虚张声势	aw;XVUUUU	0
 令人捧腹	aw;LRPFFF	0
 锐意进取	aw;RYJQQQ	0
+一棍子打死	aw;YGZDSI	0
 生搬硬套	aw;UBYTTT	0
 拖儿带女	aw;TEDNNN	0
 以身作则	aw;YUZZZZ	0
@@ -2348,6 +2420,7 @@ use_preset_vocabulary: false
 令人发指	aw;LRFVVV	0
 完全不同	aw;WQBTTT	0
 论资排辈	aw;LZPBBB	0
+我突然意识到	aw;WTRYUD	0
 心无旁骛	aw;XWPWWW	0
 党同伐异	aw;DTFYYY	0
 劫富济贫	aw;JFJPPP	0
@@ -2388,6 +2461,7 @@ use_preset_vocabulary: false
 抱怨自己	aw;BYZJJJ	0
 苟延残喘	aw;GYCIII	0
 可以一直使用下去	aw;KYYVXQ	0
+就是学不会	aw;JUXBHV	0
 生机勃勃	aw;UJBBBB	0
 甘拜下风	aw;GBXFFF	0
 好好学习	aw;HHXXXX	0
@@ -2430,6 +2504,7 @@ use_preset_vocabulary: false
 默默无闻	aw;MMWWWW	0
 拖拖拉拉	aw;TTLLLL	0
 前车之鉴	aw;QIVJJJ	0
+吹胡子瞪眼	aw;IHZDYJ	0
 喜出望外	aw;XIWWWW	0
 昨天下午	aw;ZTXWWW	0
 人言可畏	aw;RYKWWW	0
@@ -2443,6 +2518,7 @@ use_preset_vocabulary: false
 金戈铁马	aw;JGTMMM	0
 悲天悯人	aw;BTMRRR	0
 争强好胜	aw;VQHUUU	0
+无风不起浪	aw;WFBQLH	0
 错综复杂	aw;CZFZZZ	0
 若无其事	aw;RWQUUU	0
 有胆有识	aw;YDYUUU	0
@@ -2486,6 +2562,7 @@ use_preset_vocabulary: false
 十之八九	aw;UVBJJJ	0
 身无分文	aw;UWFWWW	0
 遥遥领先	aw;YYLXXX	0
+阿拉伯数字	aw;ALBUZI	0
 昨天上午	aw;ZTUWWW	0
 创建时间	aw;IJUJJJ	0
 做了一个梦	aw;ZLYGMG	0
@@ -2497,6 +2574,7 @@ use_preset_vocabulary: false
 正中下怀	aw;VVXHHH	0
 一见如故	aw;YJRGGG	0
 为所欲为	aw;WSYWWW	0
+四个现代化	aw;SGXDHW	0
 损公肥私	aw;SGFSSS	0
 勤工助学	aw;QGVXXX	0
 粗中有细	aw;CVYXXX	0
@@ -2568,7 +2646,9 @@ use_preset_vocabulary: false
 由此及彼	aw;YCJBBB	0
 淋漓尽致	aw;LLJVVV	0
 不即不离	aw;BJBLLL	0
+发展中国家	aw;FVVGJW	0
 万丈深渊	aw;WVUYYY	0
+后浪推前浪	aw;HLTQLH	0
 五分之一	aw;WFVYYY	0
 饮水思源	aw;YUSYYY	0
 三生有幸	aw;SUYXXX	0
@@ -2625,12 +2705,15 @@ use_preset_vocabulary: false
 第三人称	aw;DSRIII	0
 非遵循不可的规则	aw;FZXBGZ	0
 主攻方向	aw;VGFXXX	0
+卢沟桥事变	aw;LGQUBM	0
 刷新一下	aw;UXYXXX	0
 因噎废食	aw;YYFUUU	0
+混世魔王	aw;HUMWWW	0
 集成在一起	aw;JIZYQI	0
 刀光剑影	aw;DGJYYY	0
 无可奈何	aw;WKNHHH	0
 风行一时	aw;FXYUUU	0
+有奶便是娘	aw;YNBUND	0
 亚太地区	aw;YTDQQQ	0
 保持更新	aw;BIGXXX	0
 脍炙人口	aw;KVRKKK	0
@@ -2667,9 +2750,12 @@ use_preset_vocabulary: false
 准备好了	aw;VBHLLL	0
 有一说一	aw;YYUYYY	0
 不能满足	aw;BNMZZZ	0
+有什么用	aw;YUMYYY	0
 结束日期	aw;JURQQQ	0
+急急如律令	aw;JJRLLY	0
 不得而知	aw;BDEVVV	0
 刚正不阿	aw;GVBEEE	0
+新增订单	aw;XZDDDD	0
 茅塞顿开	aw;MSDKKK	0
 自由主义	aw;ZYVYYY	0
 自鸣得意	aw;ZMDYYY	0
@@ -2700,6 +2786,7 @@ use_preset_vocabulary: false
 光宗耀祖	aw;GZYZZZ	0
 冠冕堂皇	aw;GMTHHH	0
 亭台楼阁	aw;TTLGGG	0
+恶人先告状	aw;ERXGVD	0
 耿耿于怀	aw;GGYHHH	0
 一步登天	aw;YBDTTT	0
 外面的景色	aw;WMDJSE	0
@@ -2739,6 +2826,7 @@ use_preset_vocabulary: false
 志得意满	aw;VDYMMM	0
 皮包公司	aw;PBGSSS	0
 暗淡无光	aw;ADWGGG	0
+邯郸学步	aw;HDXBBB	0
 生死存亡	aw;USCWWW	0
 文过饰非	aw;WGUFFF	0
 诸如此类	aw;VRCLLL	0
@@ -2761,6 +2849,7 @@ use_preset_vocabulary: false
 妙不可言	aw;MBKYYY	0
 江郎才尽	aw;JLCJJJ	0
 现在几点钟	aw;XZJDVS	0
+大眼瞪小眼	aw;DYDXYJ	0
 误人子弟	aw;WRZDDD	0
 维吾尔族	aw;WWEZZZ	0
 孝子贤孙	aw;XZXSSS	0
@@ -2836,6 +2925,7 @@ use_preset_vocabulary: false
 悔过自新	aw;HGZXXX	0
 日常生活	aw;RIUHHH	0
 负隅顽抗	aw;FYWKKK	0
+计算机网络	aw;JSJWLO	0
 库存记录	aw;KCJLLL	0
 浙江杭州	aw;VJHVVV	0
 打情骂俏	aw;DQMQQQ	0
@@ -2843,6 +2933,7 @@ use_preset_vocabulary: false
 默认规则	aw;MRGZZZ	0
 大多数人都是这样	aw;DDURVY	0
 帝国主义	aw;DGVYYY	0
+电动剃须刀	aw;DDTXDK	0
 天网恢恢	aw;TWHHHH	0
 达官贵人	aw;DGGRRR	0
 整个社会	aw;VGUHHH	0
@@ -2864,6 +2955,7 @@ use_preset_vocabulary: false
 扬长避短	aw;YIBDDD	0
 文本文件	aw;WBWJJJ	0
 汗马功劳	aw;HMGLLL	0
+害人先害己	aw;HRXHJI	0
 我都听腻了	aw;WDTNLE	0
 简单一点	aw;JDYDDD	0
 三言两语	aw;SYLYYY	0
@@ -2883,6 +2975,7 @@ use_preset_vocabulary: false
 死心塌地	aw;SXTDDD	0
 不速之客	aw;BSVKKK	0
 两袖清风	aw;LXQFFF	0
+快刀斩乱麻	aw;KDVLMA	0
 胆小如鼠	aw;DXRUUU	0
 装腔作势	aw;VQZUUU	0
 溜之大吉	aw;LVDJJJ	0
@@ -2937,6 +3030,7 @@ use_preset_vocabulary: false
 以身试法	aw;YUUFFF	0
 相安无事	aw;XAWUUU	0
 略知一二	aw;LVYEEE	0
+狮子大开口	aw;UZDKKB	0
 血雨腥风	aw;XYXFFF	0
 群众组织	aw;QVZVVV	0
 投机取巧	aw;TJQQQQ	0
@@ -2980,6 +3074,7 @@ use_preset_vocabulary: false
 体贴入微	aw;TTRWWW	0
 周围的一切	aw;VWDYQX	0
 技高一筹	aw;JGYIII	0
+打蛇打七寸	aw;DUDQCP	0
 杯水车薪	aw;BUIXXX	0
 将计就计	aw;JJJJJJ	0
 任人摆布	aw;RRBBBB	0
@@ -3048,7 +3143,9 @@ use_preset_vocabulary: false
 地广人稀	aw;DGRXXX	0
 气势磅礴	aw;QUPBBB	0
 斩草除根	aw;VCIGGG	0
+恶事传千里	aw;EUIQLI	0
 桃红柳绿	aw;THLLLL	0
+电子显微镜	aw;DZXWJY	0
 义务教育	aw;YWJYYY	0
 这么明显	aw;VMMXXX	0
 固定的居所	aw;GDDJSO	0
@@ -3077,11 +3174,13 @@ use_preset_vocabulary: false
 披星戴月	aw;PXDYYY	0
 勾心斗角	aw;GXDJJJ	0
 十几分钟	aw;UJFVVV	0
+小儿麻痹症	aw;XEMBVG	0
 拖泥带水	aw;TNDUUU	0
 多此一举	aw;DCYJJJ	0
 战略物资	aw;VLWZZZ	0
 百年不遇	aw;BNBYYY	0
 逢场作戏	aw;FIZXXX	0
+就是现在	aw;JUXZZZ	0
 蓝天白云	aw;LTBYYY	0
 拉拉扯扯	aw;LLIIII	0
 免费试用	aw;MFUYYY	0
@@ -3124,6 +3223,7 @@ use_preset_vocabulary: false
 萍水相逢	aw;PUXFFF	0
 声名狼藉	aw;UMLJJJ	0
 假冒伪劣	aw;JMWLLL	0
+就可以看见	aw;JKYKJM	0
 如释重负	aw;RUVFFF	0
 记不清楚	aw;JBQIII	0
 马到成功	aw;MDIGGG	0
@@ -3147,6 +3247,7 @@ use_preset_vocabulary: false
 摇头摆尾	aw;YTBWWW	0
 缺乏经验	aw;QFJYYY	0
 何必当初	aw;HBDIII	0
+自由发展	aw;ZYFVVV	0
 继续保持	aw;JXBIII	0
 替代产品	aw;TDIPPP	0
 调兵遣将	aw;DBQJJJ	0
@@ -3163,6 +3264,7 @@ use_preset_vocabulary: false
 开门大吉	aw;KMDJJJ	0
 一息尚存	aw;YXUCCC	0
 也不知道	aw;YBVDDD	0
+生命迹象	aw;UMJXXX	0
 天花乱坠	aw;THLVVV	0
 政治避难	aw;VVBNNN	0
 旁门左道	aw;PMZDDD	0
@@ -3208,6 +3310,7 @@ use_preset_vocabulary: false
 防患未然	aw;FHWRRR	0
 三国演义	aw;SGYYYY	0
 有恃无恐	aw;YUWKKK	0
+西南地区	aw;XNDQQQ	0
 事倍功半	aw;UBGBBB	0
 中产阶级	aw;VIJJJJ	0
 略有不同	aw;LYBTTT	0
@@ -3278,9 +3381,11 @@ use_preset_vocabulary: false
 不甘示弱	aw;BGURRR	0
 编辑模式	aw;BJMUUU	0
 见风使舵	aw;JFUDDD	0
+八字没一撇	aw;BZMYPX	0
 贪官污吏	aw;TGWLLL	0
 写作专家	aw;XZVJJJ	0
 残兵败将	aw;CBBJJJ	0
+她一个人	aw;TYGRRR	0
 强烈的震撼	aw;QLDVHJ	0
 毫无疑义	aw;HWYYYY	0
 也许可以	aw;YXKYYY	0
@@ -3289,6 +3394,7 @@ use_preset_vocabulary: false
 宽以待人	aw;KYDRRR	0
 工程周期	aw;GIVQQQ	0
 退避三舍	aw;TBSUUU	0
+坐在沙发上	aw;ZZUFUH	0
 蒙混过关	aw;MHGGGG	0
 妖魔鬼怪	aw;YMGGGG	0
 不负众望	aw;BFVWWW	0
@@ -3343,8 +3449,12 @@ use_preset_vocabulary: false
 改弦易辙	aw;GXYVVV	0
 我也一直以为	aw;WYYVYW	0
 降本增效	aw;JBZXXX	0
+破绽百出	aw;PVBIII	0
 倔强的眼泪	aw;JJDYLZ	0
+邻里之间	aw;LLVJJJ	0
 齐头并进	aw;QTBJJJ	0
+自然保护区	aw;ZRBHQU	0
+患难见真情	aw;HNJVQY	0
 化整为零	aw;HVWLLL	0
 自负盈亏	aw;ZFYKKK	0
 有头有尾	aw;YTYWWW	0
@@ -3381,6 +3491,7 @@ use_preset_vocabulary: false
 高山仰止	aw;GUYVVV	0
 常被用作	aw;IBYZZZ	0
 口服心服	aw;KFXFFF	0
+一物降一物	aw;YWXYWU	0
 远程文件	aw;YIWJJJ	0
 有没有一种可能	aw;YMYYKN	0
 哑口无言	aw;YKWYYY	0
@@ -3442,6 +3553,7 @@ use_preset_vocabulary: false
 生活水平	aw;UHUPPP	0
 土豪劣绅	aw;THLUUU	0
 盛气凌人	aw;UQLRRR	0
+植物的生长	aw;VWDUVH	0
 归根结底	aw;GGJDDD	0
 金科玉律	aw;JKYLLL	0
 花花绿绿	aw;HHLLLL	0
@@ -3454,6 +3566,7 @@ use_preset_vocabulary: false
 众望所归	aw;VWSGGG	0
 不断逼问	aw;BDBWWW	0
 只有一个	aw;VYYGGG	0
+一时半会	aw;YUBHHH	0
 力争上游	aw;LVUYYY	0
 不求甚解	aw;BQUJJJ	0
 不可救药	aw;BKJYYY	0
@@ -3498,6 +3611,7 @@ use_preset_vocabulary: false
 天长地久	aw;TIDJJJ	0
 四平八稳	aw;SPBWWW	0
 心明眼亮	aw;XMYLLL	0
+翻脸不认人	aw;FLBRRF	0
 出谋划策	aw;IMHCCC	0
 双拼输入法	aw;UPURFA	0
 煞费苦心	aw;UFKXXX	0
@@ -3544,11 +3658,13 @@ use_preset_vocabulary: false
 坚定不移	aw;JDBYYY	0
 丢三落四	aw;DSLSSS	0
 反反复复	aw;FFFFFF	0
+被遗忘的角落	aw;BYWDJL	0
 成功之后	aw;IGVHHH	0
 无轨电车	aw;WGDIII	0
 你应该没什么意见吧	aw;NYGMJB	0
 现实主义	aw;XUVYYY	0
 听着听着	aw;TVTVVV	0
+碳水化合物	aw;TUHHWU	0
 开源软件	aw;KYRJJJ	0
 多宽多窄	aw;DKDVVV	0
 喋喋不休	aw;DDBXXX	0
@@ -3562,9 +3678,11 @@ use_preset_vocabulary: false
 酒足饭饱	aw;JZFBBB	0
 风卷残云	aw;FJCYYY	0
 风和日丽	aw;FHRLLL	0
+穿一条裤子	aw;IYTKZI	0
 行之有效	aw;XVYXXX	0
 温故知新	aw;WGVXXX	0
 搜索引擎	aw;SSYQQQ	0
+恨铁不成钢	aw;HTBIGH	0
 老实巴交	aw;LUBJJJ	0
 为国捐躯	aw;WGJQQQ	0
 俯拾皆是	aw;FUJUUU	0
@@ -3585,6 +3703,7 @@ use_preset_vocabulary: false
 忘乎所以	aw;WHSYYY	0
 司空见惯	aw;SKJGGG	0
 汉语词典	aw;HYCDDD	0
+十八般武艺	aw;UBBWYI	0
 粉身碎骨	aw;FUSGGG	0
 软硬兼施	aw;RYJUUU	0
 威武雄壮	aw;WWXVVV	0
@@ -3608,8 +3727,10 @@ use_preset_vocabulary: false
 默认情况下	aw;MRQKXW	0
 失魂落魄	aw;UHLPPP	0
 不知天高地厚	aw;BVTGDH	0
+在这篇文章里	aw;ZVPWVL	0
 家喻户晓	aw;JYHXXX	0
 完完全全	aw;WWQQQQ	0
+法西斯主义	aw;FXSVYI	0
 和平共处	aw;HPGIII	0
 一蹴而就	aw;YCEJJJ	0
 衡量标准	aw;HLBVVV	0
@@ -3650,6 +3771,7 @@ use_preset_vocabulary: false
 方方面面	aw;FFMMMM	0
 别有用心	aw;BYYXXX	0
 伤风败俗	aw;UFBSSS	0
+五个小时	aw;WGXUUU	0
 统一战线	aw;TYVXXX	0
 光明正大	aw;GMVDDD	0
 喜闻乐见	aw;XWLJJJ	0
@@ -3662,6 +3784,7 @@ use_preset_vocabulary: false
 避重就轻	aw;BVJQQQ	0
 救亡图存	aw;JWTCCC	0
 不容置疑	aw;BRVYYY	0
+六个小时	aw;LGXUUU	0
 骇人听闻	aw;HRTWWW	0
 恰如其分	aw;QRQFFF	0
 放不下心	aw;FBXXXX	0
@@ -3735,6 +3858,7 @@ use_preset_vocabulary: false
 我曾无数次	aw;WCWUCI	0
 不劳而获	aw;BLEHHH	0
 走火入魔	aw;ZHRMMM	0
+封建社会	aw;FJUHHH	0
 最常用的功能	aw;ZIYDGN	0
 耀武扬威	aw;YWYWWW	0
 请告诉我	aw;QGSWWW	0
@@ -3743,7 +3867,9 @@ use_preset_vocabulary: false
 手到擒来	aw;UDQLLL	0
 取而代之	aw;QEDVVV	0
 人的天性	aw;RDTXXX	0
+豆腐渣工程	aw;DFVGIG	0
 前无古人	aw;QWGRRR	0
+大事不糊涂	aw;DUBHTU	0
 应用程序	aw;YYIXXX	0
 主从复制	aw;VCFVVV	0
 审时度势	aw;UUDUUU	0
@@ -3763,6 +3889,7 @@ use_preset_vocabulary: false
 无中生有	aw;WVUYYY	0
 徒劳无功	aw;TLWGGG	0
 糊里糊涂	aw;HLHTTT	0
+脚踏两只船	aw;JTLVIR	0
 拨乱反正	aw;BLFVVV	0
 披荆斩棘	aw;PJVJJJ	0
 飞檐走壁	aw;FYZBBB	0
@@ -3802,11 +3929,13 @@ use_preset_vocabulary: false
 小肚鸡肠	aw;XDJIII	0
 使不上劲	aw;UBUJJJ	0
 法律法规	aw;FLFGGG	0
+欲速则不达	aw;YSZBDA	0
 横眉冷对	aw;HMLDDD	0
 一塌糊涂	aw;YTHTTT	0
 大义凛然	aw;DYLRRR	0
 用心良苦	aw;YXLKKK	0
 愚公移山	aw;YGYUUU	0
+祸从天上来	aw;HCTULL	0
 安营扎寨	aw;AYZVVV	0
 安营扎寨	aw;AYVVVV	0
 百感交集	aw;BGJJJJ	0
@@ -3872,10 +4001,12 @@ use_preset_vocabulary: false
 难以置信	aw;NYVXXX	0
 星罗棋布	aw;XLQBBB	0
 怒火中烧	aw;NHVUUU	0
+从来没有想过	aw;CLMYXG	0
 联系方式	aw;LXFUUU	0
 新浪科技	aw;XLKJJJ	0
 自我陶醉	aw;ZWTZZZ	0
 人微言轻	aw;RWYQQQ	0
+旧瓶装新酒	aw;JPVXJQ	0
 花言巧语	aw;HYQYYY	0
 苟且偷生	aw;GQTUUU	0
 一朝一夕	aw;YVYXXX	0
@@ -3920,6 +4051,7 @@ use_preset_vocabulary: false
 自告奋勇	aw;ZGFYYY	0
 妇孺皆知	aw;FRJVVV	0
 恶声恶气	aw;EUEQQQ	0
+顾三不顾四	aw;GSBGSI	0
 见仁见智	aw;JRJVVV	0
 紧急状态	aw;JJVTTT	0
 天真无邪	aw;TVWXXX	0
@@ -3991,6 +4123,7 @@ use_preset_vocabulary: false
 拐弯抹角	aw;GWMJJJ	0
 生死与共	aw;USYGGG	0
 通货膨胀	aw;THPVVV	0
+千山万壑	aw;QUWHHH	0
 就这样吧	aw;JVYBBB	0
 微信公众号	aw;WXGVHK	0
 迈出一步	aw;MIYBBB	0
@@ -4018,6 +4151,7 @@ use_preset_vocabulary: false
 摇旗呐喊	aw;YQNHHH	0
 故地重游	aw;GDIYYY	0
 莫逆之交	aw;MNVJJJ	0
+国际儿童节	aw;GJETJX	0
 东窗事发	aw;DIUFFF	0
 狗皮膏药	aw;GPGYYY	0
 积重难返	aw;JVNFFF	0
@@ -4072,6 +4206,7 @@ use_preset_vocabulary: false
 最后通牒	aw;ZHTDDD	0
 没问题吧	aw;MWTBBB	0
 举棋不定	aw;JQBDDD	0
+不足为凭	aw;BZWPPP	0
 一定之规	aw;YDVGGG	0
 首鼠两端	aw;UULDDD	0
 心心相印	aw;XXXYYY	0
@@ -4091,6 +4226,7 @@ use_preset_vocabulary: false
 生产日期	aw;UIRQQQ	0
 无私无畏	aw;WSWWWW	0
 人丁兴旺	aw;RDXWWW	0
+人民检察院	aw;RMJIYR	0
 各奔东西	aw;GBDXXX	0
 文本编辑	aw;WBBJJJ	0
 找到更好的选择	aw;VDGHXZ	0
@@ -4143,6 +4279,7 @@ use_preset_vocabulary: false
 荣辱与共	aw;RRYGGG	0
 沸沸扬扬	aw;FFYYYY	0
 化险为夷	aw;HXWYYY	0
+特别行政区	aw;TBXVQU	0
 作息规律	aw;ZXGLLL	0
 抑扬顿挫	aw;YYDCCC	0
 聊斋志异	aw;LVVYYY	0
@@ -4155,6 +4292,7 @@ use_preset_vocabulary: false
 在所不惜	aw;ZSBXXX	0
 天罗地网	aw;TLDWWW	0
 俯拾即是	aw;FUJUUU	0
+总是有一些	aw;ZUYYXX	0
 上市公司	aw;UUGSSS	0
 奋发向上	aw;FFXUUU	0
 论功行赏	aw;LGXUUU	0
@@ -4191,6 +4329,7 @@ use_preset_vocabulary: false
 灰头土脸	aw;HTTLLL	0
 鸦雀无声	aw;YQWUUU	0
 唇亡齿寒	aw;IWIHHH	0
+少年先锋队	aw;UNXFDV	0
 烟消云散	aw;YXYSSS	0
 虚怀若谷	aw;XHRGGG	0
 原始记录	aw;YUJLLL	0
@@ -4251,6 +4390,7 @@ use_preset_vocabulary: false
 取信于民	aw;QXYMMM	0
 荒唐无稽	aw;HTWJJJ	0
 见利忘义	aw;JLWYYY	0
+怎么处理	aw;ZMILLL	0
 无法自拔	aw;WFZBBB	0
 软件著作权	aw;RJVZQR	0
 何乐而不为	aw;HLEBWZ	0
@@ -4270,6 +4410,7 @@ use_preset_vocabulary: false
 空洞无物	aw;KDWWWW	0
 改天换地	aw;GTHDDD	0
 急风暴雨	aw;JFBYYY	0
+片甲不留	aw;PJBLLL	0
 孑然一身	aw;JRYUUU	0
 五花大绑	aw;WHDBBB	0
 痛定思痛	aw;TDSTTT	0
@@ -4403,6 +4544,7 @@ use_preset_vocabulary: false
 哑然失笑	aw;YRUXXX	0
 高山反应	aw;GUFYYY	0
 有什么关系	aw;YUMGXI	0
+吃力不讨好	aw;ILBTHK	0
 没有找到	aw;MYVDDD	0
 实报实销	aw;UBUXXX	0
 呼之欲出	aw;HVYIII	0
@@ -4424,8 +4566,10 @@ use_preset_vocabulary: false
 珠联璧合	aw;VLBHHH	0
 鹤立鸡群	aw;HLJQQQ	0
 争名夺利	aw;VMDLLL	0
+冰炭不同炉	aw;BTBTLU	0
 知识产权	aw;VUIQQQ	0
 无时无刻	aw;WUWKKK	0
+迪斯尼乐园	aw;DSNLYR	0
 鼎力相助	aw;DLXVVV	0
 急起直追	aw;JQVVVV	0
 身不由己	aw;UBYJJJ	0
@@ -4433,10 +4577,12 @@ use_preset_vocabulary: false
 大鸣大放	aw;DMDFFF	0
 美轮美奂	aw;MLMHHH	0
 悄无声息	aw;QWUXXX	0
+树倒猢狲散	aw;UDHSSJ	0
 普天之下	aw;PTVXXX	0
 见义勇为	aw;JYYWWW	0
 这么玩是吧	aw;VMWUBA	0
 尖嘴猴腮	aw;JZHSSS	0
+在我身边	aw;ZWUBBB	0
 老弱残兵	aw;LRCBBB	0
 高锰酸钾	aw;GMSJJJ	0
 原地踏步	aw;YDTBBB	0
@@ -4453,6 +4599,7 @@ use_preset_vocabulary: false
 天涯海角	aw;TYHJJJ	0
 有机玻璃	aw;YJBLLL	0
 头疼脑热	aw;TTNRRR	0
+东西南北	aw;DXNBBB	0
 乐不可支	aw;LBKVVV	0
 据理力争	aw;JLLVVV	0
 身败名裂	aw;UBMLLL	0
@@ -4497,6 +4644,7 @@ use_preset_vocabulary: false
 国破家亡	aw;GPJWWW	0
 一家之言	aw;YJVYYY	0
 魂飞魄散	aw;HFPSSS	0
+不宣而战	aw;BXEVVV	0
 夸大其词	aw;KDQCCC	0
 不堪设想	aw;BKUXXX	0
 老奸巨猾	aw;LJJHHH	0
@@ -4534,6 +4682,7 @@ use_preset_vocabulary: false
 可望而不可即	aw;KWEBKJ	0
 生意兴隆	aw;UYXLLL	0
 想想办法	aw;XXBFFF	0
+杀人不眨眼	aw;URBVYJ	0
 继续下去	aw;JXXQQQ	0
 有声有色	aw;YUYSSS	0
 丧心病狂	aw;SXBKKK	0
@@ -4547,6 +4696,7 @@ use_preset_vocabulary: false
 二氧化碳	aw;EYHTTT	0
 妻离子散	aw;QLZSSS	0
 急功近利	aw;JGJLLL	0
+马克思主义	aw;MKSVYI	0
 仓库管理员	aw;CKGLYR	0
 弄巧成拙	aw;NQIVVV	0
 血口喷人	aw;XKPRRR	0
@@ -4656,8 +4806,11 @@ use_preset_vocabulary: false
 机关算尽	aw;JGSJJJ	0
 丰功伟绩	aw;FGWJJJ	0
 仪表堂堂	aw;YBTTTT	0
+四维空间	aw;SWKJJJ	0
+国家所有制	aw;GJSYVI	0
 什么时候	aw;UMUHHH	0
 脚踏实地	aw;JTUDDD	0
+这种情况	aw;VVQKKK	0
 中央银行	aw;VYYHHH	0
 挥洒自如	aw;HSZRRR	0
 突飞猛进	aw;TFMJJJ	0
@@ -4679,6 +4832,7 @@ use_preset_vocabulary: false
 触景生情	aw;IJUQQQ	0
 鸡飞蛋打	aw;JFDDDD	0
 人尽其才	aw;RJQCCC	0
+东风吹马耳	aw;DFIMER	0
 操作系统	aw;CZXTTT	0
 一个问题	aw;YGWTTT	0
 数据冗余	aw;UJRYYY	0
@@ -4767,6 +4921,7 @@ use_preset_vocabulary: false
 异口同声	aw;YKTUUU	0
 先入为主	aw;XRWVVV	0
 灰飞烟灭	aw;HFYMMM	0
+天文望远镜	aw;TWWYJY	0
 有什么样的看法	aw;YUMYKF	0
 天理难容	aw;TLNRRR	0
 综合治理	aw;ZHVLLL	0
@@ -4795,6 +4950,7 @@ use_preset_vocabulary: false
 能给自己	aw;NGZJJJ	0
 一落千丈	aw;YLQVVV	0
 来者不拒	aw;LVBJJJ	0
+名垂千古	aw;MIQGGG	0
 知根知底	aw;VGVDDD	0
 以理服人	aw;YLFRRR	0
 矢志不渝	aw;UVBYYY	0
@@ -4829,6 +4985,7 @@ use_preset_vocabulary: false
 鬼鬼祟祟	aw;GGSSSS	0
 老气横秋	aw;LQHQQQ	0
 编程语言	aw;BIYYYY	0
+报喜不报忧	aw;BXBBYB	0
 掩人耳目	aw;YREMMM	0
 其乐无穷	aw;QLWQQQ	0
 其中一个原因大概是	aw;QVYGGU	0
@@ -4946,6 +5103,8 @@ use_preset_vocabulary: false
 任务周期	aw;RWVQQQ	0
 必经阶段	aw;BJJDDD	0
 举目无亲	aw;JMWQQQ	0
+每个角落	aw;MGJLLL	0
+疾风扫落叶	aw;JFSLYE	0
 赞不绝口	aw;ZBJKKK	0
 我的话打动了她	aw;WDHDLT	0
 大多数人都是	aw;DDURDU	0
@@ -4987,16 +5146,20 @@ use_preset_vocabulary: false
 智能电器	aw;VNDQQQ	0
 同业公会	aw;TYGHHH	0
 缩头缩脑	aw;STSNNN	0
+八国联军	aw;BGLJJJ	0
 望眼欲穿	aw;WYYIII	0
+我们也可以	aw;WMYKYI	0
 弹无虚发	aw;DWXFFF	0
 搞定了吗	aw;GDLMMM	0
 对于我来说	aw;DYWLUO	0
 后会有期	aw;HHYQQQ	0
 经济效益	aw;JJXYYY	0
 抽水马桶	aw;IUMTTT	0
+换汤不换药	aw;HTBHYK	0
 兑换奖品	aw;DHJPPP	0
 化学元素	aw;HXYSSS	0
 需要大量时间	aw;XYDLUJ	0
+海洋性气候	aw;HYXQHB	0
 条条框框	aw;TTKKKK	0
 我这辈子	aw;WVBZZZ	0
 如何删除	aw;RHUIII	0
@@ -5067,6 +5230,7 @@ use_preset_vocabulary: false
 深情厚谊	aw;UQHYYY	0
 化学纤维	aw;HXXWWW	0
 符合国家有关规定	aw;FHGJGD	0
+大家都知道	aw;DJDVDK	0
 隔壁房间	aw;GBFJJJ	0
 五颜六色	aw;WYLSSS	0
 敷衍了事	aw;FYLUUU	0
@@ -5091,10 +5255,13 @@ use_preset_vocabulary: false
 无以为报	aw;WYWBBB	0
 文不对题	aw;WBDTTT	0
 抓耳挠腮	aw;VENSSS	0
+狗眼看人低	aw;GYKRDI	0
 不务正业	aw;BWVYYY	0
 良莠不齐	aw;LYBQQQ	0
+棒打鸳鸯	aw;BDYYYY	0
 咎由自取	aw;JYZQQQ	0
 民族英雄	aw;MZYXXX	0
+国际互联网	aw;GJHLWH	0
 没那么简单	aw;MNMJDJ	0
 拥有多项发明专利	aw;YYDXVL	0
 无精打采	aw;WJDCCC	0
@@ -5102,6 +5269,7 @@ use_preset_vocabulary: false
 呕心沥血	aw;OXLXXX	0
 一往无前	aw;YWWQQQ	0
 囊中羞涩	aw;NVXSSS	0
+任何东西	aw;RHDXXX	0
 依依惜别	aw;YYXBBB	0
 面黄肌瘦	aw;MHJUUU	0
 这是有原因的	aw;VUYYYD	0
@@ -5148,10 +5316,12 @@ use_preset_vocabulary: false
 卿卿我我	aw;QQWWWW	0
 以毒攻毒	aw;YDGDDD	0
 知识青年	aw;VUQNNN	0
+水火无情	aw;UHWQQQ	0
 安卓模拟器	aw;AVMNQI	0
 有口无心	aw;YKWXXX	0
 众说纷纭	aw;VUFYYY	0
 超市入口	aw;IURKKK	0
+通讯系统	aw;TXXTTT	0
 大势已去	aw;DUYQQQ	0
 适得其反	aw;UDQFFF	0
 专科学校	aw;VKXXXX	0
@@ -5204,8 +5374,10 @@ use_preset_vocabulary: false
 鸦片战争	aw;YPVVVV	0
 妄自菲薄	aw;WZFBBB	0
 风尘仆仆	aw;FIPPPP	0
+可以找到	aw;KYVDDD	0
 多劳多得	aw;DLDDDD	0
 东拼西凑	aw;DPXCCC	0
+二十四节气	aw;EUSJQI	0
 忍气吞声	aw;RQTUUU	0
 一无是处	aw;YWUIII	0
 我知道怎么回事了	aw;WVDZUL	0
@@ -5225,12 +5397,14 @@ use_preset_vocabulary: false
 言外之意	aw;YWVYYY	0
 骂骂咧咧	aw;MMLLLL	0
 你看着办	aw;NKVBBB	0
+皮笑肉不笑	aw;PXRBXC	0
 鞍前马后	aw;AQMHHH	0
 火冒三丈	aw;HMSVVV	0
 弃暗投明	aw;QATMMM	0
 穷则思变	aw;QZSBBB	0
 小家子气	aw;XJZQQQ	0
 事到临头	aw;UDLTTT	0
+盲人摸象	aw;MRMXXX	0
 曾经沧海	aw;CJCHHH	0
 郁郁葱葱	aw;YYCCCC	0
 如数家珍	aw;RUJVVV	0
@@ -5260,6 +5434,7 @@ use_preset_vocabulary: false
 门当户对	aw;MDHDDD	0
 下不为例	aw;XBWLLL	0
 有必要吗	aw;YBYMMM	0
+读书破万卷	aw;DUPWJR	0
 空空如也	aw;KKRYYY	0
 我知道了	aw;WVDLLL	0
 核反应堆	aw;HFYDDD	0
@@ -5277,6 +5452,7 @@ use_preset_vocabulary: false
 答非所问	aw;DFSWWW	0
 所到之处	aw;SDVIII	0
 老当益壮	aw;LDYVVV	0
+犯罪嫌疑人	aw;FZXYRF	0
 锐不可当	aw;RBKDDD	0
 日常工作	aw;RIGZZZ	0
 人心惶惶	aw;RXHHHH	0
@@ -5297,6 +5473,7 @@ use_preset_vocabulary: false
 话里有话	aw;HLYHHH	0
 无所事事	aw;WSUUUU	0
 民事责任	aw;MUZRRR	0
+病急乱投医	aw;BJLTYI	0
 网络游戏	aw;WLYXXX	0
 一个半月	aw;YGBYYY	0
 自力更生	aw;ZLGUUU	0
@@ -5347,6 +5524,7 @@ use_preset_vocabulary: false
 无法完成	aw;WFWIII	0
 促膝谈心	aw;CXTXXX	0
 虎口拔牙	aw;HKBYYY	0
+不知不觉中	aw;BVBJVS	0
 一步到位	aw;YBDWWW	0
 你的眼光	aw;NDYGGG	0
 高高在上	aw;GGZUUU	0
@@ -5447,6 +5625,7 @@ use_preset_vocabulary: false
 添砖加瓦	aw;TVJWWW	0
 冷言冷语	aw;LYLYYY	0
 别有风味	aw;BYFWWW	0
+民主集中制	aw;MVJVVI	0
 背井离乡	aw;BJLXXX	0
 美中不足	aw;MVBZZZ	0
 转过身去	aw;VGUQQQ	0
@@ -5475,6 +5654,7 @@ use_preset_vocabulary: false
 言简意赅	aw;YJYGGG	0
 多快好省	aw;DKHUUU	0
 付出代价	aw;FIDJJJ	0
+才发现了	aw;CFXLLL	0
 明天下午	aw;MTXWWW	0
 难以形容	aw;NYXRRR	0
 天灾人祸	aw;TZRHHH	0
@@ -5490,6 +5670,7 @@ use_preset_vocabulary: false
 你死我活	aw;NSWHHH	0
 惊弓之鸟	aw;JGVNNN	0
 踏踏实实	aw;TTUUUU	0
+仔细研究	aw;ZXYJJJ	0
 虎视眈眈	aw;HUDDDD	0
 捷足先登	aw;JZXDDD	0
 善罢甘休	aw;UBGXXX	0
@@ -5514,6 +5695,7 @@ use_preset_vocabulary: false
 深山老林	aw;UULLLL	0
 出以公心	aw;IYGXXX	0
 盘根错节	aw;PGCJJJ	0
+从头再来	aw;CTZLLL	0
 姹紫嫣红	aw;IZYHHH	0
 顺便说一句	aw;UBUYJU	0
 千载难逢	aw;QZNFFF	0
@@ -5562,6 +5744,7 @@ use_preset_vocabulary: false
 旁征博引	aw;PVBYYY	0
 感同身受	aw;GTUUUU	0
 浓妆艳抹	aw;NVYMMM	0
+地球表面	aw;DQBMMM	0
 崇山峻岭	aw;IUJLLL	0
 头头是道	aw;TTUDDD	0
 心怀鬼胎	aw;XHGTTT	0
@@ -5570,6 +5753,7 @@ use_preset_vocabulary: false
 火眼金睛	aw;HYJJJJ	0
 瞻前顾后	aw;VQGHHH	0
 石破天惊	aw;UPTJJJ	0
+让我们来	aw;RWMLLL	0
 无土栽培	aw;WTZPPP	0
 六神无主	aw;LUWVVV	0
 爱莫能助	aw;AMNVVV	0
@@ -5640,6 +5824,7 @@ use_preset_vocabulary: false
 以少胜多	aw;YUUDDD	0
 高等动物	aw;GDDWWW	0
 厉兵秣马	aw;LBMMMM	0
+家书抵万金	aw;JUDWJN	0
 心血来潮	aw;XXLIII	0
 臭名昭著	aw;IMVVVV	0
 鱼米之乡	aw;YMVXXX	0
@@ -5674,23 +5859,25 @@ use_preset_vocabulary: false
 上车时间	aw;UIUJJJ	0
 达斡尔族	aw;DWEZZZ	0
 夷为平地	aw;YWPDDD	0
-邪门歪道	aw;XMWDDD	0
-一目十行	aw;YMUHHH	0
-有始无终	aw;YUWVVV	0
-自寻短见	aw;ZXDJJJ	0
-邯郸学步	aw;HDXBBB	0
-混世魔王	aw;HUMWWW	0
-乱作一团	aw;LZYTTT	0
-盲人摸象	aw;MRMXXX	0
-名垂千古	aw;MIQGGG	0
-片甲不留	aw;PJBLLL	0
-破绽百出	aw;PVBIII	0
-掐头去尾	aw;QTQWWW	0
-千山万壑	aw;QUWHHH	0
-山光水色	aw;UGUSSS	0
-水火无情	aw;UHWQQQ	0
-贼喊捉贼	aw;ZHVZZZ	0
-笨鸟先飞	aw;BNXFFF	0
-棒打鸳鸯	aw;BDYYYY	0
-不宣而战	aw;BXEVVV	0
-不足为凭	aw;BZWPPP	0
+可望不可及	aw;KWBKJI	0
+两眼一抹黑	aw;LYYMHZ	0
+临时抱佛脚	aw;LUBFJC	0
+慢工出细活	aw;MGIXHO	0
+瞒上不瞒下	aw;MUBMXW	0
+蚂蚁搬泰山	aw;MYBTUJ	0
+泥菩萨过江	aw;NPSGJD	0
+藕断丝不断	aw;ODSBDR	0
+破罐子破摔	aw;PGZPUY	0
+枪打出头鸟	aw;QDITNC	0
+墙倒众人推	aw;QDVRTV	0
+牵着鼻子走	aw;QVBZZB	0
+擒贼先擒王	aw;QZXQWH	0
+群起而攻之	aw;QQEGVI	0
+日久见人心	aw;RJJRXN	0
+山高皇帝远	aw;UGHDYR	0
+事后诸葛亮	aw;UHVGLD	0
+十八层地狱	aw;UBCDYU	0
+十年九不遇	aw;UNJBYU	0
+十步九回头	aw;UBJHTB	0
+人不可貌相	aw;RBKMXD	0
+民以食为天	aw;MYUWTM	0

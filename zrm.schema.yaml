@@ -64,7 +64,7 @@ engine:
     - lua_translator@*baidu_translator
     - lua_translator@*c2e_translator
     - lua_translator@*extend_translator
-    - lua_translator@*auto_translator
+    #- lua_translator@*auto_translator
   filters:
     - simplifier
     - uniquifier
