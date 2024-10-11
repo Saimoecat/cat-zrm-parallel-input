@@ -406,7 +406,13 @@ end
 ---@param env object 上下文对象
 ---
 local function init(env)
-
+	local engine = env.engine
+	local context = engine.context
+	-- 初始化开关值
+	context:set_property("baidu","false")
+	context:set_property("snapshot","false")
+	context:set_property("c2e","")
+	context:set_property("extend","")
 end
 
 ---
@@ -902,8 +908,12 @@ local function processor(key_event, env)
 			if (#str < 2) then
 				context:pop_input(#str)
 			else
-				--context:pop_input(2)
-				context:pop_input(1)
+				-- 鼠须管下需要删除2次
+				if (rime_api:get_distribution_code_name() == "Squirrel") then
+					context:pop_input(2)
+				else
+					context:pop_input(1)
+				end				
 			end
 			return 1
 		end
