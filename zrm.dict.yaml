@@ -7,11 +7,12 @@ version: "20240117"
 sort: by_weight
 use_preset_vocabulary: false
 import_tables:
-  - zrm_yin			# 音码表
-  - zrm_xing		# 形码表
-  - zrm_fu			# 符号表
-  - zrm_one			# 一码表
+  - zrm_yin            # 音码表
+  - zrm_xing        # 形码表
+  - zrm_fu            # 符号表
+  - zrm_one            # 一码表
   - zrm_jane        # 简码库
+  - zrm_first        # 首拼库
   - zrm_system      # 系统库
   - zrm_name        # 人名库
   - zrm_addr        # 地名库
