@@ -234,8 +234,9 @@ local function filter(input, env)
 		end
 
 		cand.preedit = preedit
-
+		
 		yield(cand)
+
     end
 	
 	--清空联想

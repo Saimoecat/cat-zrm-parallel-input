@@ -134,7 +134,7 @@ local function normal(matches, env)
 	
     env.mem:user_lookup(matches[1], true)
     for item in env.mem:iter_user() do
-		if (getUtf8Len(item.text) > 1) then
+		if (getUtf8Len(item.text) > #matches) then
 			table.insert(words, item)
 		end
     end
@@ -260,7 +260,6 @@ local function normal(matches, env)
         return ""
     end
 	
-	
 	local text = words[index].text
 	local a = strUtf8Sub(text,1,length)
 	local b = strUtf8Sub(text,length+1,#text)
@@ -293,8 +292,6 @@ local function translator(input, seg, env)
 	if(not composition:empty()) then
 		segment = composition:back()
 	end
-
-
 
 	
 	-- 如果不是最后一位则不预测
