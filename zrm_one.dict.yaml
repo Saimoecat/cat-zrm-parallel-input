@@ -7,6 +7,9 @@ name: zrm_one
 version: "20240117"
 sort: original
 use_preset_vocabulary: false
+columns:
+  - text
+  - code
 ...
 的	a1
 一	a2

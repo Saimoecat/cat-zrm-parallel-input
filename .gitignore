@@ -13,3 +13,4 @@ default.custom.yaml
 *.plist
 installation.yaml
 user.yaml
+essay.txt

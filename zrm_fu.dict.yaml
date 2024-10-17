@@ -7,6 +7,9 @@ name: zrm_fu
 version: "20240117"
 sort: original
 use_preset_vocabulary: false
+columns:
+  - text
+  - code
 ...
 #左数字
 1	1_

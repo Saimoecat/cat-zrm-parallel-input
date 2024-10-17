@@ -5,7 +5,7 @@
 name: zrm
 version: "20240117"
 sort: by_weight
-use_preset_vocabulary: false
+use_preset_vocabulary: true
 import_tables:
   - zrm_yin            # 音码表
   - zrm_xing        # 形码表
@@ -16,7 +16,7 @@ import_tables:
   - zrm_system      # 系统库
   - zrm_name        # 人名库
   - zrm_addr        # 地名库
-  #- zrm_essay       # 八股文
+  #- zrm_essay        # 八股文
 ...
 
 # 用戶自定義詞庫

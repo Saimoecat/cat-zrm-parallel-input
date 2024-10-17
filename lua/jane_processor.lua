@@ -408,24 +408,7 @@ local function processor(key_event, env)
 			return 2
 		end
 	end
-	
-	--清除保留状态
-	local flag = context:get_property("snapshot")
-	if (flag ~= nil and flag == "true") then
-		snapshot.input = ""
-		context:set_property("snapshot","false")
-	end
-	--Esc
-	--[[
-	if (key_event.keycode == 65307) then
-		if (#input == 0) then
-			-- 恢复保留状态
-			if (snapshot:restore(env)) then
-				return 1
-			end
-		end
-	end
-	]]
+
     --检查一击词
     local code = word(input, key_event.keycode)
 
@@ -472,8 +455,6 @@ local function processor(key_event, env)
                 engine:commit_text(entry.text)
             end
         end
-			--保存编码
-		snapshot:save(env)
 		--清除编码
 		context:clear_previous_segment()
         context:clear()
