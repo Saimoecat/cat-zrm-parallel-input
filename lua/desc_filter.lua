@@ -142,6 +142,27 @@ local function comparison(now, input)
     return ""
 end
 
+
+--获取目录
+local function get_path ()
+    local path = rime_api:get_user_data_dir() .. "/recorder/pin.txt"
+    local a = io.open(path, "r")
+    a = a and
+    a:close()
+    or
+    io.open(path, "w+"):close()
+    return path
+end
+
+-- 分组
+function split(inputstr, sep)
+    local t = {}
+    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+        table.insert(t, str)
+    end
+    return t
+end
+
 ---
 ---初始化
 ---@param env object 上下文对象
@@ -151,10 +172,60 @@ end
 
 local function filter(input, env)
 	local inp = env.engine.context.input
+	local pinList = {}
+	
+	-- 查询pin库
+	local path = get_path()
+	local file = io.open(path, "r")
+	if not file then return end
+	local content = file:read("*all")
+	file:seek("set")
+	--循环解析
+	for line in file:lines() do
+		if line:find("^" .. inp .. "\t") then			
+			-- 分组
+			local part1, part2 = string.match(line, "(.*)\t(.*)")
+			local parts = split(part2, " ")
+			
+			-- 加入置顶集合
+			for _,each in ipairs(parts) do
+				table.insert(pinList, each)
+			end
+		end
+	end
+	--关闭文件
+	file:close()
+	
+	local candList = {}
+	local pinCandList = {}
+	
+	-- 检查是否有置顶词
+	if (#pinList > 0) then
+		for cand in input:iter() do
+			local pinFlag = false
+			for _,each in ipairs(pinList) do
+				if (each == cand.text) then
+					pinFlag = true
+					break
+				end
+			end
+			
+			if (pinFlag) then
+				table.insert(pinCandList, cand)
+			else
+				table.insert(candList, cand)
+			end
+		end
+	else
+		for cand in input:iter() do
+			table.insert(candList, cand)
+		end
+	end
+	
+	-- 优先加载置顶词
 	local index = 0
-	for cand in input:iter() do
+	for _,cand in ipairs(pinCandList) do
 		index = index + 1
-		local flag = true
 
 		-- 还原preedit
 		local preeditArray = {"¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","⁰"}
@@ -168,6 +239,57 @@ local function filter(input, env)
 			table.insert(groups, each)
 		end
 		local lastInput = groups[#groups]
+		
+		
+		local res = comment(cand)
+		cand.comment = res .. "*"
+
+		-- 判断是否有空码
+		if (flag and index == 1 and env.engine.context.caret_pos == #inp) then
+			-- 找出不相同的部分
+			local text = comparison(cand.preedit,inp)
+			-- 判断不相同的部分是否大于0
+			if ( #text > 0 ) then
+				env.engine.context:pop_input(#text)
+			end
+		end
+		
+
+		local preedit = ""
+		for i, v in ipairs(groups) do
+    			preedit = preedit .. v
+			if (i <= #preeditArray) then
+				preedit = preedit .. preeditArray[i]
+			end
+			preedit = preedit .. " "
+		end
+
+		cand.preedit = preedit
+		
+		yield(cand)
+
+    end
+	
+	
+	-- 加载普通词
+	for _,cand in ipairs(candList) do
+		index = index + 1
+		local flag = true
+
+		-- 还原preedit
+		local preeditArray = {"¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","⁰"}
+    	for i, v in ipairs(preeditArray) do
+	    	cand.preedit = string.gsub(cand.preedit, v, "")
+    	end
+		
+		
+		-- 拆分编码集合
+		local groups = {}
+		for each in string.gmatch(cand.preedit, "%S+") do
+			table.insert(groups, each)
+		end
+		local lastInput = groups[#groups]
+		
 		
 		if (inp == "__") then
 			flag = false
@@ -223,6 +345,7 @@ local function filter(input, env)
 				env.engine.context:pop_input(#text)
 			end
 		end
+		
 
 		local preedit = ""
 		for i, v in ipairs(groups) do
@@ -245,6 +368,8 @@ local function filter(input, env)
 		env.engine.context:clear()
 	end
 	--]]
+	
+
 	
 	--清空无编码
 	local composition =  env.engine.context.composition

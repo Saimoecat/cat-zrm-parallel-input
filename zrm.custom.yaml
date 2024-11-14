@@ -266,7 +266,7 @@ patch:
 __patch:
 # Rx: 语言模型 {
   - patch/+:
-      __include: grammar:/huayu
+      #__include: grammar:/huayu
 # }
 
 

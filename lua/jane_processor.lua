@@ -423,6 +423,12 @@ local function processor(key_event, env)
 
     --判断以击词
     if (code ~= "") then
+		-- 判断小写字母
+		if (string.match(code,"%l") ~= nil) then
+			context:pop_input(1)
+			return 1
+		end
+		
         --上屏候选词
 		if (#input > 1) then
 			local found = string.find(input, "\"")
@@ -455,10 +461,11 @@ local function processor(key_event, env)
                 engine:commit_text(entry.text)
             end
         end
+		
 		--清除编码
 		context:clear_previous_segment()
-        context:clear()
-        return 1
+		context:clear()
+		return 1
     end
 
     return 2

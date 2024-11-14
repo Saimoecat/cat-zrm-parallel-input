@@ -12,7 +12,6 @@ import_tables:
   - zrm_fu            # 符号表
   - zrm_one            # 一码表
   - zrm_jane        # 简码库
-  - zrm_first        # 首拼库
   - zrm_system      # 系统库
   - zrm_name        # 人名库
   - zrm_addr        # 地名库

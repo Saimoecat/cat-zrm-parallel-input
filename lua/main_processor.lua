@@ -417,6 +417,59 @@ local function ding(length, endstr, keycode)
     return ""
 end
 
+
+---
+---判断简码模式
+---
+local function jian(input,keycode)
+	if (#input == 1) then
+		-- 判断是大写字母
+		if (input:match("^%u+$") ~= nil) then
+			-- 大写字母数组
+			local letterArray = {
+				"A", "B", "C", "D", "E", "F", "G",
+				"H", "I", "J", "K", "L", "M", "N",
+				"O", "P", "Q", "R", "S", "T",
+				"U", "V", "W", "X", "Y", "Z"
+			}
+			-- 大写字母数组
+			local numberArray = {
+				65, 66, 67, 68, 69, 70, 71,
+				72, 73, 74, 75, 76, 77, 78,
+				79, 80, 81, 82, 83, 84,
+				85, 86, 87, 88, 89, 90
+			}
+			for i = 1, #numberArray do
+				if (keycode == numberArray[i]) then
+					return input .. letterArray[i]
+				end
+			end
+		end
+	end
+	return ""
+end
+
+
+--获取目录
+local function get_path ()
+    local path = rime_api:get_user_data_dir() .. "/recorder/pin.txt"
+    local a = io.open(path, "r")
+    a = a and
+    a:close()
+    or
+    io.open(path, "w+"):close()
+    return path
+end
+
+-- 分组
+function split(inputstr, sep)
+    local t = {}
+    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+        table.insert(t, str)
+    end
+    return t
+end
+
 ---
 ---初始化
 ---@param env object 上下文对象
@@ -429,6 +482,9 @@ local function init(env)
     context:set_property("snapshot", "false")
     context:set_property("c2e", "")
     context:set_property("extend", "")
+	--最后选择
+	env.lastselect = ""
+	env.lastinput = ""
 end
 
 ---
@@ -446,6 +502,13 @@ local function processor(key_event, env)
     if (not composition:empty()) then
         segment = composition:back()
     end
+	
+	--判断简码模式
+	local jianRes = jian(input,key_event.keycode)
+	if (jianRes ~= "") then
+		context.input = "aw" .. jianRes
+		return 1
+	end
 
     -- 还原preedit
     local preeditArray = { "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰" }
@@ -458,6 +521,12 @@ local function processor(key_event, env)
     for each in string.gmatch(text, "%S+") do
         table.insert(groups, each)
     end
+	
+	-- 最后选中
+	if (check(groups[#groups]) == false) then
+		env.lastselect = context:get_selected_candidate().text
+		env.lastinput = input
+	end
 
     -- 判断是否上屏为上屏编码
     if (#input > 2 and context.caret_pos == #input) then
@@ -806,9 +875,58 @@ local function processor(key_event, env)
                 elseif (key_event.keycode == 112) then
                     -- ap
                     if (check(groups[#groups])) then
-                        -- ????????
-                        context:clear_previous_segment()
-                        context:clear()
+                        -- 置顶
+						--打开文本
+						local path = get_path()
+						local file = io.open(path, "r")
+						if not file then return end
+						local content = file:read("*all")
+						local new_content = ""
+						file:seek("set")
+						--更新pin词库
+						local append_line = env.lastinput .. "\t" .. env.lastselect .. " "
+						local index = 1
+						for line in file:lines() do
+							if (line:find("^" .. env.lastinput .. "\t")) then
+								-- 分组
+								local part1, part2 = string.match(line, "(.*)\t(.*)")
+								local parts = split(part2, " ")
+								local addFlag = true
+								local contentStr = ""
+								-- 循环解析
+								for i, v in ipairs(parts) do
+									if (env.lastselect == v) then
+										addFlag = false
+									else
+										contentStr = contentStr .. v .. " "
+									end
+								end
+								-- 是否新加词
+								if (addFlag) then
+									contentStr = contentStr .. env.lastselect .." "
+								end
+								-- 判断是否有值
+								if (contentStr == "") then 
+									append_line = ""
+								else 
+									append_line = env.lastinput.. "\t" .. contentStr
+								end
+								
+							elseif (index > 1) then
+								new_content = new_content .. line .. "\n"
+							end
+							index = index + 1
+						end
+						-- 写入文件
+						io.open(path, "w+"):write("--\t--"):close()
+						if (append_line ~= "") then
+							io.open(path, "a"):write("\n"..append_line):close()
+						end
+						io.open(path, "a"):write("\n" .. new_content):close()
+						--关闭文件
+						file:close()
+						-- 清除多余编码
+                        context:pop_input(1)
                         return 1
                     end
                 elseif (key_event.keycode == 98) then
@@ -853,11 +971,13 @@ local function processor(key_event, env)
                     end
                 elseif (key_event.keycode == 103) then
                     -- ag
-                    context:clear_previous_segment()
-                    context:clear()
-                    -- 恢复保留状态
-                    snapshot:restore(env)
-                    return 1
+					if (check(groups[#groups])) then
+                        context:clear_previous_segment()
+						context:clear()
+						-- 恢复保留状态
+						snapshot:restore(env)
+						return 1
+                    end
                 end
             elseif (input:sub(#input, #input) == "r") then
                 -- 移动光标到指定位置(移动到第一个字用右Shift)
@@ -928,7 +1048,7 @@ local function processor(key_event, env)
     end
 
     -- 删除
-    if (key_event.keycode == 65288) then
+	if (key_event.keycode == 65288) then
         if (#groups > 0) then
 
             local str = groups[#groups]
@@ -946,6 +1066,7 @@ local function processor(key_event, env)
             return 1
         end
     end
+	
 
     -- Tab
     if (key_event.keycode == 65289) then

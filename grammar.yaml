@@ -2,12 +2,12 @@
 huayu:
   grammar:
     language: zh-hans-t-huayu-v7-bgw
-    #collocation_max_length: 6
-    #collocation_min_length: 2
-    #collocation_penalty: -20
-    #non_collocation_penalty: -20
-    #weak_collocation_penalty: -26
-    #rear_penalty: 0
+    collocation_max_length: 6
+    collocation_min_length: 2
+    collocation_penalty: -20
+    non_collocation_penalty: -20
+    weak_collocation_penalty: -26
+    rear_penalty: 0
     non_collocation_penalty: -24
     collocation_penalty: -6
     weak_collocation_penalty: -12
