@@ -424,7 +424,7 @@ local function processor(key_event, env)
     --判断以击词
     if (code ~= "") then
 		-- 判断小写字母
-		if (string.match(code,"%l") ~= nil) then
+		if (string.find(code, "\"") == nil and string.match(code,"%l") ~= nil) then
 			context:pop_input(1)
 			return 1
 		end

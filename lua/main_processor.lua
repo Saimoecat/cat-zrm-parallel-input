@@ -238,7 +238,9 @@ end
 ---
 local function check(last)
     -- 判断编码
-    if (#last == 3) then
+    if (last == nil) then
+		return false
+	elseif (#last == 3) then
         -- 判断是否为3位，即空格组合
         if (string.find(last, "\"") ~= nil) then
             return false
@@ -485,6 +487,7 @@ local function init(env)
 	--最后选择
 	env.lastselect = ""
 	env.lastinput = ""
+	env.lastpreedit = ""
 end
 
 ---
@@ -524,8 +527,11 @@ local function processor(key_event, env)
 	
 	-- 最后选中
 	if (check(groups[#groups]) == false) then
-		env.lastselect = context:get_selected_candidate().text
-		env.lastinput = input
+		if (context:get_selected_candidate() ~= nil) then
+			env.lastselect = context:get_selected_candidate().text
+			env.lastinput = input
+			env.lastpreedit = text
+		end
 	end
 
     -- 判断是否上屏为上屏编码
@@ -884,13 +890,13 @@ local function processor(key_event, env)
 						local new_content = ""
 						file:seek("set")
 						--更新pin词库
-						local append_line = env.lastinput .. "\t" .. env.lastselect .. " "
+						local append_line = env.lastinput .. "\t" .. env.lastpreedit .. "\t" .. env.lastselect .. " "
 						local index = 1
 						for line in file:lines() do
-							if (line:find("^" .. env.lastinput .. "\t")) then
+							if (line:find("^" .. env.lastinput .. "\t" .. env.lastpreedit .. "\t")) then
 								-- 分组
-								local part1, part2 = string.match(line, "(.*)\t(.*)")
-								local parts = split(part2, " ")
+								local part1, part2, part3 = string.match(line, "(.*)\t(.*)\t(.*)")
+								local parts = split(part3, " ")
 								local addFlag = true
 								local contentStr = ""
 								-- 循环解析
@@ -909,7 +915,7 @@ local function processor(key_event, env)
 								if (contentStr == "") then 
 									append_line = ""
 								else 
-									append_line = env.lastinput.. "\t" .. contentStr
+									append_line = env.lastinput.. "\t" .. env.lastpreedit .. "\t" .. contentStr
 								end
 								
 							elseif (index > 1) then
@@ -918,7 +924,7 @@ local function processor(key_event, env)
 							index = index + 1
 						end
 						-- 写入文件
-						io.open(path, "w+"):write("--\t--"):close()
+						io.open(path, "w+"):write("--\t--\t--"):close()
 						if (append_line ~= "") then
 							io.open(path, "a"):write("\n"..append_line):close()
 						end

@@ -15,12 +15,14 @@ end
 --获取中文字符长度
 local function getUtf8Len(str)
     local len = 0
-    local currentIndex = 1
-    while currentIndex <= #str do
-        local char = string.byte(str, currentIndex)
-        currentIndex = currentIndex + getCharSize(char)
-        len = len + 1
-    end
+	if (str ~= nil) then
+	    local currentIndex = 1
+		while currentIndex <= #str do
+			local char = string.byte(str, currentIndex)
+			currentIndex = currentIndex + getCharSize(char)
+			len = len + 1
+		end
+	end
     return len
 end
 
@@ -73,11 +75,13 @@ local function comment (candidate)
     local code = queryByXing(lastZi)
 	
     local lastCode = groups[#groups]
+	
+	local codeLength = getUtf8Len(lastCode) - 2
 
     if (string.match(lastCode, "«") == nil) then
         return "〔" .. code:sub(1, 2) .. "〕"
     else
-        local newCode = strUtf8Sub(lastCode,4,getUtf8Len(lastCode) - 4)
+		local newCode = strUtf8Sub(lastCode,4,getUtf8Len(lastCode) - 4)
         if (getUtf8Len(newCode) == 2) then
             return "〔" .. code:sub(3, 4) .. "〕"
         elseif (getUtf8Len(newCode) == 4) then
@@ -155,7 +159,7 @@ local function get_path ()
 end
 
 -- 分组
-function split(inputstr, sep)
+local function split(inputstr, sep)
     local t = {}
     for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
         table.insert(t, str)
@@ -163,17 +167,165 @@ function split(inputstr, sep)
     return t
 end
 
+-- 置顶候选词
+local function pinCandidate (env,inp,cand)
+    env.countIndex = env.countIndex + 1
+
+    -- 还原preedit
+    local preeditArray = { "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰" }
+    for i, v in ipairs(preeditArray) do
+        cand.preedit = string.gsub(cand.preedit, v, "")
+    end
+
+    -- 拆分编码集合
+    local groups = {}
+    for each in string.gmatch(cand.preedit, "%S+") do
+        table.insert(groups, each)
+    end
+
+    local res = comment(cand)
+    cand.comment = res .. "📌"
+
+    -- 判断是否有空码
+    if (env.countIndex == 1 and env.engine.context.caret_pos == #inp) then
+        -- 找出不相同的部分
+        local text = comparison(cand.preedit, inp)
+        -- 判断不相同的部分是否大于0
+        if (#text > 0) then
+            env.engine.context:pop_input(#text)
+        end
+    end
+
+    local preedit = ""
+    for i, v in ipairs(groups) do
+        preedit = preedit .. v
+        if (i <= #preeditArray) then
+            preedit = preedit .. preeditArray[i]
+        end
+        preedit = preedit .. " "
+    end
+
+    cand.preedit = preedit
+
+    return cand
+end
+
+-- 普通候选词
+local function ordinaryCandidate (env,inp,cand)
+
+	env.countIndex = env.countIndex + 1
+	local flag = true
+
+	-- 还原preedit
+	local preeditArray = {"¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","⁰"}
+	for i, v in ipairs(preeditArray) do
+		cand.preedit = string.gsub(cand.preedit, v, "")
+	end
+	
+	
+	-- 拆分编码集合
+	local groups = {}
+	for each in string.gmatch(cand.preedit, "%S+") do
+		table.insert(groups, each)
+	end
+	local lastInput = groups[#groups]
+	
+	
+	if (inp == "__") then
+		flag = false
+	elseif (inp:sub(1, 2) == "as") then
+		flag = false
+	elseif (inp:sub(1, 2) == "ay") then
+		flag = false
+	elseif (inp == "ax") then
+		flag = false
+	elseif (inp:sub(1, 2) == "au") then
+		flag = false
+	elseif (inp:sub(1, 2) == "at") then
+		flag = false
+	elseif (inp:sub(1, 2) == "aq") then
+		flag = false
+	elseif (cand.type == "baidu") then
+		flag = false
+	elseif (cand.type == "c2e") then
+		flag = false
+	elseif (cand.type == "extend") then
+		flag = false
+	elseif (cand.type == "auto") then
+		flag = false
+	elseif (cand.type == "completion") then
+		cand.comment = "〔〶〕"
+		flag = false
+	elseif (cand.type == "phone") then
+		flag = false
+	elseif (lastInput:sub(1, 2) == "aw") then
+		local res = jane(cand,lastInput)
+		cand.comment = res
+		cand.type = "jane"
+		flag = false
+	elseif (lastInput:sub(1, 2) == "az") then
+		cand.type = "xing"
+		flag = true
+	end
+	
+	if (flag) then
+		local res = comment(cand)
+		cand.comment = res
+		if (cand.type == "user_phrase") then
+			cand.comment = cand.comment.."⚡"
+		end
+	end
+
+
+	-- 判断是否有空码
+	if (flag and env.countIndex == 1 and env.engine.context.caret_pos == #inp) then
+		-- 找出不相同的部分
+		local text = comparison(cand.preedit,inp)
+		-- 判断不相同的部分是否大于0
+		if ( #text > 0 ) then
+			env.engine.context:pop_input(#text)
+		end
+	end
+	
+
+	local preedit = ""
+	for i, v in ipairs(groups) do
+			preedit = preedit .. v
+		if (i <= #preeditArray) then
+			preedit = preedit .. preeditArray[i]
+		end
+		preedit = preedit .. " "
+	end
+
+	cand.preedit = preedit
+	
+	if (env.countIndex == 1 and string.find(cand.preedit, "²") == nil) then
+		env.oneFlag  = true
+	end
+	
+	if (string.find(cand.preedit, "²") ~= nil or env.oneFlag ) then
+		return true
+	else 
+		return false
+	end
+	
+end
+
 ---
 ---初始化
 ---@param env object 上下文对象
 ---
 local function init(env)
+	env.countIndex = 0
+	env.oneFlag = false
 end
 
 local function filter(input, env)
+	env.countIndex = 0
+	env.oneFlag  = false
 	local inp = env.engine.context.input
 	local pinList = {}
-	
+
 	-- 查询pin库
 	local path = get_path()
 	local file = io.open(path, "r")
@@ -184,11 +336,15 @@ local function filter(input, env)
 	for line in file:lines() do
 		if line:find("^" .. inp .. "\t") then			
 			-- 分组
-			local part1, part2 = string.match(line, "(.*)\t(.*)")
-			local parts = split(part2, " ")
+			local part1, part2, part3 = string.match(line, "(.*)\t(.*)\t(.*)")
+			local parts = split(part3, " ")
 			
 			-- 加入置顶集合
 			for _,each in ipairs(parts) do
+				env.countIndex = env.countIndex + 1
+				local pinCand = Candidate("pin", 0, #inp, each, "")
+				pinCand.preedit = part2
+				yield(pinCandidate(env,inp,pinCand))
 				table.insert(pinList, each)
 			end
 		end
@@ -196,190 +352,35 @@ local function filter(input, env)
 	--关闭文件
 	file:close()
 	
-	local candList = {}
-	local pinCandList = {}
-	
 	-- 检查是否有置顶词
-	if (#pinList > 0) then
-		for cand in input:iter() do
-			local pinFlag = false
+	for cand in input:iter() do
+		local pinFlag = true
+		if (#pinList > 0) then
 			for _,each in ipairs(pinList) do
 				if (each == cand.text) then
-					pinFlag = true
+					pinFlag = false
 					break
 				end
 			end
-			
-			if (pinFlag) then
-				table.insert(pinCandList, cand)
-			else
-				table.insert(candList, cand)
-			end
 		end
-	else
-		for cand in input:iter() do
-			table.insert(candList, cand)
+		
+		if (pinFlag) then
+			local ordinary = ordinaryCandidate(env,inp,cand)
+			if (ordinary) then
+				yield(cand)
+			end
 		end
 	end
 	
-	-- 优先加载置顶词
-	local index = 0
-	for _,cand in ipairs(pinCandList) do
-		index = index + 1
-
-		-- 还原preedit
-		local preeditArray = {"¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","⁰"}
-    	for i, v in ipairs(preeditArray) do
-	    	cand.preedit = string.gsub(cand.preedit, v, "")
-    	end
-		
-		-- 拆分编码集合
-		local groups = {}
-		for each in string.gmatch(cand.preedit, "%S+") do
-			table.insert(groups, each)
-		end
-		local lastInput = groups[#groups]
-		
-		
-		local res = comment(cand)
-		cand.comment = res .. "*"
-
-		-- 判断是否有空码
-		if (flag and index == 1 and env.engine.context.caret_pos == #inp) then
-			-- 找出不相同的部分
-			local text = comparison(cand.preedit,inp)
-			-- 判断不相同的部分是否大于0
-			if ( #text > 0 ) then
-				env.engine.context:pop_input(#text)
-			end
-		end
-		
-
-		local preedit = ""
-		for i, v in ipairs(groups) do
-    			preedit = preedit .. v
-			if (i <= #preeditArray) then
-				preedit = preedit .. preeditArray[i]
-			end
-			preedit = preedit .. " "
-		end
-
-		cand.preedit = preedit
-		
-		yield(cand)
-
-    end
-	
-	
-	-- 加载普通词
-	for _,cand in ipairs(candList) do
-		index = index + 1
-		local flag = true
-
-		-- 还原preedit
-		local preeditArray = {"¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","⁰"}
-    	for i, v in ipairs(preeditArray) do
-	    	cand.preedit = string.gsub(cand.preedit, v, "")
-    	end
-		
-		
-		-- 拆分编码集合
-		local groups = {}
-		for each in string.gmatch(cand.preedit, "%S+") do
-			table.insert(groups, each)
-		end
-		local lastInput = groups[#groups]
-		
-		
-		if (inp == "__") then
-			flag = false
-		elseif (inp:sub(1, 2) == "as") then
-			flag = false
-		elseif (inp:sub(1, 2) == "ay") then
-			flag = false
-		elseif (inp == "ax") then
-			flag = false
-		elseif (inp:sub(1, 2) == "au") then
-			flag = false
-		elseif (inp:sub(1, 2) == "at") then
-			flag = false
-		elseif (inp:sub(1, 2) == "aq") then
-			flag = false
-		elseif (cand.type == "baidu") then
-			flag = false
-		elseif (cand.type == "c2e") then
-			flag = false
-		elseif (cand.type == "extend") then
-			flag = false
-		elseif (cand.type == "auto") then
-			flag = false
-		elseif (cand.type == "completion") then
-			cand.comment = "〔〶〕"
-			flag = false
-		elseif (cand.type == "phone") then
-			flag = false
-		elseif (lastInput:sub(1, 2) == "aw") then
-			local res = jane(cand,lastInput)
-			cand.comment = res
-			cand.type = "jane"
-			flag = false
-		elseif (lastInput:sub(1, 2) == "az") then
-			cand.type = "xing"
-			flag = true
-		end
-		
-		if (flag) then
-			local res = comment(cand)
-			cand.comment = res
-			if (cand.type == "user_phrase") then
-				cand.comment = cand.comment.."☯"
-			end
-		end
-
-		-- 判断是否有空码
-		if (flag and index == 1 and env.engine.context.caret_pos == #inp) then
-			-- 找出不相同的部分
-			local text = comparison(cand.preedit,inp)
-			-- 判断不相同的部分是否大于0
-			if ( #text > 0 ) then
-				env.engine.context:pop_input(#text)
-			end
-		end
-		
-
-		local preedit = ""
-		for i, v in ipairs(groups) do
-    			preedit = preedit .. v
-			if (i <= #preeditArray) then
-				preedit = preedit .. preeditArray[i]
-			end
-			preedit = preedit .. " "
-		end
-
-		cand.preedit = preedit
-		
-		yield(cand)
-
-    end
-	
-	--清空联想
-	--[[
-	if (inp == "ac" and index == 0) then
-		env.engine.context:clear()
-	end
-	--]]
-	
-
-	
-	--清空无编码
+		--清空无编码
 	local composition =  env.engine.context.composition
 	if(not composition:empty()) then
 		local segment = composition:back()
-		if (index == 0 and string.find(segment.prompt, "〔") == nil) then
+		if (env.countIndex == 0 and string.find(segment.prompt, "〔") == nil) then
 			env.engine.context:clear()
 		end
 	end
-	
+
 end
 
 return {init = init, func = filter}

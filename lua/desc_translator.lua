@@ -22,9 +22,6 @@ local function translator(input, seg, env)
 		elseif (input:sub(1, 2) == "as") then
 			local segment = composition:back()
 			segment.prompt = "〔日期时间〕"
-		elseif (input:sub(1, 2) == "ar") then
-			local segment = composition:back()
-			segment.prompt = "〔重置输入〕"
 		elseif (input:sub(1, 2) == "aq") then
 			local segment = composition:back()
 			segment.prompt = "〔英语输入〕"
