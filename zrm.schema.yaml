@@ -120,8 +120,8 @@ key_binder:
     
     - { when: composing, accept: "Return", send: "Escape" }
     #- { when: composing, accept: Tab, send: "Shift+Right" }
-    #- { when: composing, accept: Left, send: "Page_Up" }
-    #- { when: composing, accept: Right, send: "Page_Down" }
+    - { when: composing, accept: Up, send: "Page_Up" }
+    - { when: composing, accept: Down, send: "Page_Down" }
     - { when: composing, accept: Shift+Shift_L, send: Shift+Left }
     - { when: composing, accept: Shift+Shift_R, send: Shift+Right }
     

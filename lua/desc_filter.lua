@@ -211,8 +211,7 @@ local function pinCandidate (env,inp,cand)
 end
 
 -- 普通候选词
-local function ordinaryCandidate (env,inp,cand)
-
+local function ordinaryCandidate (index,env,inp,cand)
 	env.countIndex = env.countIndex + 1
 	local flag = true
 
@@ -299,11 +298,11 @@ local function ordinaryCandidate (env,inp,cand)
 
 	cand.preedit = preedit
 	
-	if (env.countIndex == 1 and string.find(cand.preedit, "²") == nil) then
+	if (index == 1 and #groups == 1) then
 		env.oneFlag  = true
 	end
 	
-	if (string.find(cand.preedit, "²") ~= nil or env.oneFlag ) then
+	if (flag == false or #groups > 1 or env.oneFlag ) then
 		return true
 	else 
 		return false
@@ -352,6 +351,8 @@ local function filter(input, env)
 	--关闭文件
 	file:close()
 	
+	local index = 0
+	
 	-- 检查是否有置顶词
 	for cand in input:iter() do
 		local pinFlag = true
@@ -365,7 +366,8 @@ local function filter(input, env)
 		end
 		
 		if (pinFlag) then
-			local ordinary = ordinaryCandidate(env,inp,cand)
+			index = index + 1
+			local ordinary = ordinaryCandidate(index,env,inp,cand)
 			if (ordinary) then
 				yield(cand)
 			end
