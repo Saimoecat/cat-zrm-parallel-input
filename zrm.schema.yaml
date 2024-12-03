@@ -35,6 +35,7 @@ engine:
     - recognizer #此处理器用于识别输入的字符和词组。它可以识别您输入的文本，然后将其转换为相应的候选词。
     - key_binder #此处理器主要负责键盘按键的绑定。它可以将特定的按键绑定到特定的功能或命令上。
     - lua_processor@*recorder_processor
+    - lua_processor@*suffix_processor
     - lua_processor@*jane_processor
     - lua_processor@*main_processor
     - speller #此处理器用于拼写检查。它可以检查您输入的文本是否正确，并提供正确的拼写建议。

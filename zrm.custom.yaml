@@ -1,8 +1,8 @@
 patch:
   
   "engine/processors/@before 2": 
-    #chord_composer  # 实现并击按键处理
-    lua_processor@*chord_composer_processor  # 实现并击按键处理
+    chord_composer  # 实现并击按键处理
+    #lua_processor@*chord_composer_processor  # 实现并击按键处理
 
   chord_composer:
     finish_chord_on_first_key_release: true #有一键被释放时立刻触发合成
@@ -266,7 +266,7 @@ patch:
 __patch:
 # Rx: 语言模型 {
   - patch/+:
-      #__include: grammar:/huayu
+      __include: grammar:/huayu
 # }
 
 

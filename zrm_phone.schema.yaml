@@ -34,7 +34,7 @@ engine:
     - ascii_composer #此处理器主要用于处理ASCII字符的输入。当您键入任何ASCII字符时，它可以确保这些字符被正确地解析和显示。
     - recognizer #此处理器用于识别输入的字符和词组。它可以识别您输入的文本，然后将其转换为相应的候选词。
     - key_binder #此处理器主要负责键盘按键的绑定。它可以将特定的按键绑定到特定的功能或命令上。
-    - lua_processor@*recorder_processor
+    #- lua_processor@*recorder_processor
     #- lua_processor@*jane_processor
     #- lua_processor@*main_processor
     - lua_processor@*phone_processor
@@ -54,9 +54,9 @@ engine:
     - reverse_lookup_translator
     - script_translator
     - history_translator@repeat_history
-    - lua_translator@*phone_translator
+    #- lua_translator@*phone_translator
     - lua_translator@*date_translator
-    - lua_translator@*pinyin_translator
+    #- lua_translator@*pinyin_translator
     - lua_translator@*system_translator
     - lua_translator@*desc_translator
     #- lua_translator@*word_translator
@@ -85,11 +85,7 @@ speller:
   algebra:
     - derive/^([a-z][a-z]|[a-z][A-Z]|[A-Z][a-z]);([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])$/$1/
     - derive/^([a-z][a-z]|[a-z][A-Z]|[A-Z][a-z]);([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])$/$1/					#YY
-    #- derive/^(\w+);([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2_/				#YY[X]
-    #- derive/^(\w+);([A-Z])([A-Z])([A-Z])([A-Z])$/$1_$2/				#YY[X]
     - derive/^([a-z][a-z]|[a-z][A-Z]|[A-Z][a-z]);([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2$3/				#YY[XX]
-    #- derive/^(\w+);([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2$3$4_/			#YY[XXX]
-    #- derive/^(\w+);([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2$3_$4/			#YY[XXX]
     - derive/^([a-z][a-z]|[a-z][A-Z]|[A-Z][a-z]);([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2$3$4$5/			#YY[XXXX]
     - derive/^([a-z][a-z]|[a-z][A-Z]|[A-Z][a-z]);([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2$3$4$5$6$7/		#YY[XXXXZZ]
     #- abbrev/^(.).+$/$1/

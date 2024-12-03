@@ -6,6 +6,7 @@
 /trash/
 /recorder/baidu.txt
 /recorder/recorder_*.txt
+/recorder/suffix.txt
 zrm.userdb.txt
 *.iml
 weasel.custom.yaml

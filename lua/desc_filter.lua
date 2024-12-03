@@ -148,8 +148,19 @@ end
 
 
 --获取目录
-local function get_path ()
+local function get_pin_path ()
     local path = rime_api:get_user_data_dir() .. "/recorder/pin.txt"
+    local a = io.open(path, "r")
+    a = a and
+    a:close()
+    or
+    io.open(path, "w+"):close()
+    return path
+end
+
+--获取目录
+local function get_suffix_path ()
+    local path = rime_api:get_user_data_dir() .. "/recorder/suffix.txt"
     local a = io.open(path, "r")
     a = a and
     a:close()
@@ -168,7 +179,7 @@ local function split(inputstr, sep)
 end
 
 -- 置顶候选词
-local function pinCandidate (env,inp,cand)
+local function specialCandidate (env,inp,cand,tage)
     env.countIndex = env.countIndex + 1
 
     -- 还原preedit
@@ -184,7 +195,7 @@ local function pinCandidate (env,inp,cand)
     end
 
     local res = comment(cand)
-    cand.comment = res .. "📌"
+    cand.comment = res .. tage
 
     -- 判断是否有空码
     if (env.countIndex == 1 and env.engine.context.caret_pos == #inp) then
@@ -297,10 +308,18 @@ local function ordinaryCandidate (index,env,inp,cand)
 	end
 
 	cand.preedit = preedit
-	
+ 
 	if (index == 1 and #groups == 1) then
-		env.oneFlag  = true
+		-- 去掉符号
+		local first = groups[1]
+		first = string.gsub(first, " ", "")
+		first = string.gsub(first, "«", "")
+		first = string.gsub(first, "»", "")
+		if (first == inp) then
+			env.oneFlag  = true
+		end
 	end
+	
 	
 	if (flag == false or #groups > 1 or env.oneFlag ) then
 		return true
@@ -308,6 +327,99 @@ local function ordinaryCandidate (index,env,inp,cand)
 		return false
 	end
 	
+end
+
+-- 查询pin库
+local function checkPin(env,inp) 
+	local pinList = {}
+
+	-- 查询pin库
+	local path = get_pin_path()
+	local file = io.open(path, "r")
+	if not file then return end
+	local content = file:read("*all")
+	file:seek("set")
+	--循环解析
+	for line in file:lines() do
+		if line:find("^" .. inp .. "\t") then			
+			-- 分组
+			local part1, part2, part3 = string.match(line, "(.*)\t(.*)\t(.*)")
+			local parts = split(part3, " ")
+			
+			-- 加入置顶集合
+			for _,each in ipairs(parts) do
+				local pinCand = Candidate("pin", 0, #inp, each, "")
+				pinCand.preedit = part2
+				yield(specialCandidate(env,inp,pinCand,"📌"))
+				table.insert(pinList, each)
+			end
+		end
+	end
+	--关闭文件
+	file:close()
+	
+	return pinList
+end
+
+-- 查询suffix库
+local function checkSuffix(env,inp,pinList) 
+	local suffixList = {}
+
+	-- 查询pin库
+	local path = get_suffix_path()
+	local file = io.open(path, "r")
+	if not file then return end
+	local content = file:read("*all")
+	file:seek("set")
+	--循环解析
+	for line in file:lines() do
+		if line:find("^" .. inp .. "\t") then			
+			-- 分组
+			local part1, part2, part3, part4, part5 = string.match(line, "(.*)\t(.*)\t(.*)\t(.*)\t(.*)")
+			
+			-- 最后输入
+			local lasttext = env.engine.context.commit_history:latest_text()
+
+			-- 检查前缀
+			if (lasttext == part3) then
+				-- 排出pin置顶词
+				local pinFlag = true
+				if (#pinList > 0) then
+					for _,each in ipairs(pinList) do
+						if (each == part3) then
+							pinFlag = false
+							break
+						end
+					end
+				end
+				
+				if (pinFlag) then
+					local suffixCand = {}
+					suffixCand.text = part4
+					suffixCand.preedit = part2
+					suffixCand.weight = part5
+					table.insert(suffixList, suffixCand)
+				end
+			end
+		end
+	end
+	
+	-- 按照 weight 属性降序排序
+	table.sort(suffixList, function(a, b)
+		return a.weight > b.weight
+	end)
+	
+	-- 生成候选
+	for _,each in ipairs(suffixList) do
+		local suffixCand = Candidate("suffix", 0, #inp, each.text, "")
+		suffixCand.preedit = each.preedit
+		yield(specialCandidate(env,inp,suffixCand,"☯"))
+	end
+	
+	--关闭文件
+	file:close()
+	
+	return suffixList
 end
 
 ---
@@ -323,49 +435,40 @@ local function filter(input, env)
 	env.countIndex = 0
 	env.oneFlag  = false
 	local inp = env.engine.context.input
-	local pinList = {}
-
+	
+	
 	-- 查询pin库
-	local path = get_path()
-	local file = io.open(path, "r")
-	if not file then return end
-	local content = file:read("*all")
-	file:seek("set")
-	--循环解析
-	for line in file:lines() do
-		if line:find("^" .. inp .. "\t") then			
-			-- 分组
-			local part1, part2, part3 = string.match(line, "(.*)\t(.*)\t(.*)")
-			local parts = split(part3, " ")
-			
-			-- 加入置顶集合
-			for _,each in ipairs(parts) do
-				env.countIndex = env.countIndex + 1
-				local pinCand = Candidate("pin", 0, #inp, each, "")
-				pinCand.preedit = part2
-				yield(pinCandidate(env,inp,pinCand))
-				table.insert(pinList, each)
-			end
-		end
-	end
-	--关闭文件
-	file:close()
+	local pinList = checkPin(env,inp)
+	
+	local suffixList = checkSuffix(env,inp,pinList)
 	
 	local index = 0
 	
 	-- 检查是否有置顶词
 	for cand in input:iter() do
-		local pinFlag = true
+		local candFlag = true
+		-- 检查pin置顶词
 		if (#pinList > 0) then
 			for _,each in ipairs(pinList) do
 				if (each == cand.text) then
-					pinFlag = false
+					candFlag = false
 					break
 				end
 			end
 		end
 		
-		if (pinFlag) then
+		-- 检查suffix后缀词
+		if (#suffixList > 0) then
+			for _,each in ipairs(suffixList) do
+				if (each.text == cand.text) then
+					candFlag = false
+					break
+				end
+			end
+		end
+		
+		-- 普通词
+		if (candFlag) then
 			index = index + 1
 			local ordinary = ordinaryCandidate(index,env,inp,cand)
 			if (ordinary) then
@@ -374,7 +477,7 @@ local function filter(input, env)
 		end
 	end
 	
-		--清空无编码
+	--清空无编码
 	local composition =  env.engine.context.composition
 	if(not composition:empty()) then
 		local segment = composition:back()
