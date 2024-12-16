@@ -82,6 +82,7 @@ local function comment (candidate)
         return "〔" .. code:sub(1, 2) .. "〕"
     else
 		local newCode = strUtf8Sub(lastCode,4,getUtf8Len(lastCode) - 4)
+
         if (getUtf8Len(newCode) == 2) then
             return "〔" .. code:sub(3, 4) .. "〕"
         elseif (getUtf8Len(newCode) == 4) then
@@ -178,7 +179,7 @@ local function split(inputstr, sep)
     return t
 end
 
--- 置顶候选词
+-- 特殊候选词
 local function specialCandidate (env,inp,cand,tage)
     env.countIndex = env.countIndex + 1
 
@@ -196,7 +197,19 @@ local function specialCandidate (env,inp,cand,tage)
 
     local res = comment(cand)
     cand.comment = res .. tage
+	
+	-- 判断全码
+	if (res == "" and #inp == 8) then
+		if (inp:sub(1, 2) ~= "az" and inp:sub(1, 2) == "aw") then
+			env.engine:commit_text(cand.text)
+			--清除编码
+			env.engine.context:clear_previous_segment()
+			env.engine.context:clear()
+			return nil
+		end
+	end
 
+	--[[
     -- 判断是否有空码
     if (env.countIndex == 1 and env.engine.context.caret_pos == #inp) then
         -- 找出不相同的部分
@@ -206,6 +219,7 @@ local function specialCandidate (env,inp,cand,tage)
             env.engine.context:pop_input(#text)
         end
     end
+	]]
 
     local preedit = ""
     for i, v in ipairs(groups) do
@@ -284,9 +298,20 @@ local function ordinaryCandidate (index,env,inp,cand)
 		if (cand.type == "user_phrase") then
 			cand.comment = cand.comment.."⚡"
 		end
+		
+		
+		-- 判断全码
+		if (res == "" and #inp == 8) then
+			env.engine:commit_text(cand.text)
+			--清除编码
+			env.engine.context:clear_previous_segment()
+			env.engine.context:clear()
+			return false
+		end
 	end
 
 
+	--[[
 	-- 判断是否有空码
 	if (flag and env.countIndex == 1 and env.engine.context.caret_pos == #inp) then
 		-- 找出不相同的部分
@@ -296,6 +321,7 @@ local function ordinaryCandidate (index,env,inp,cand)
 			env.engine.context:pop_input(#text)
 		end
 	end
+	]]
 	
 
 	local preedit = ""
@@ -315,8 +341,9 @@ local function ordinaryCandidate (index,env,inp,cand)
 		first = string.gsub(first, " ", "")
 		first = string.gsub(first, "«", "")
 		first = string.gsub(first, "»", "")
-		if (first == inp) then
-			env.oneFlag  = true
+		
+		if (first == string.sub(inp,env.engine.context.caret_pos - #first + 1, env.engine.context.caret_pos)) then
+			env.oneFlag = true
 		end
 	end
 	
@@ -350,8 +377,11 @@ local function checkPin(env,inp)
 			for _,each in ipairs(parts) do
 				local pinCand = Candidate("pin", 0, #inp, each, "")
 				pinCand.preedit = part2
-				yield(specialCandidate(env,inp,pinCand,"📌"))
-				table.insert(pinList, each)
+				local specialCand = specialCandidate(env,inp,pinCand,"📌")
+				if (specialCand ~= nil) then
+					yield(specialCand)
+					table.insert(pinList, each)
+				end
 			end
 		end
 	end
@@ -362,7 +392,7 @@ local function checkPin(env,inp)
 end
 
 -- 查询suffix库
-local function checkSuffix(env,inp,pinList) 
+local function checkSuffix(env,inp,pinList) 	
 	local suffixList = {}
 
 	-- 查询pin库
@@ -413,7 +443,10 @@ local function checkSuffix(env,inp,pinList)
 	for _,each in ipairs(suffixList) do
 		local suffixCand = Candidate("suffix", 0, #inp, each.text, "")
 		suffixCand.preedit = each.preedit
-		yield(specialCandidate(env,inp,suffixCand,"☯"))
+		local specialCand =  specialCandidate(env,inp,suffixCand,"☯")
+		if (specialCand ~= nil) then
+			yield(specialCand)
+		end
 	end
 	
 	--关闭文件
@@ -434,41 +467,51 @@ end
 local function filter(input, env)
 	env.countIndex = 0
 	env.oneFlag  = false
+	local index = 0
 	local inp = env.engine.context.input
 	
-	
-	-- 查询pin库
-	local pinList = checkPin(env,inp)
-	
-	local suffixList = checkSuffix(env,inp,pinList)
-	
-	local index = 0
-	
-	-- 检查是否有置顶词
-	for cand in input:iter() do
-		local candFlag = true
-		-- 检查pin置顶词
-		if (#pinList > 0) then
-			for _,each in ipairs(pinList) do
-				if (each == cand.text) then
-					candFlag = false
-					break
+	if (env.engine.schema.schema_id == "zrm") then	
+		-- 查询pin库
+		local pinList = checkPin(env,inp)
+		
+		-- 查询suffix库
+		local suffixList = checkSuffix(env,inp,pinList)
+		
+		-- 检查是否有置顶词
+		for cand in input:iter() do
+			local candFlag = true
+			-- 检查pin置顶词
+			if (#pinList > 0) then
+				for _,each in ipairs(pinList) do
+					if (each == cand.text) then
+						candFlag = false
+						break
+					end
+				end
+			end
+			
+			-- 检查suffix后缀词
+			if (#suffixList > 0) then
+				for _,each in ipairs(suffixList) do
+					if (each.text == cand.text) then
+						candFlag = false
+						break
+					end
+				end
+			end
+			
+			-- 普通词
+			if (candFlag) then
+				index = index + 1
+				local ordinary = ordinaryCandidate(index,env,inp,cand)
+				if (ordinary) then
+					yield(cand)
 				end
 			end
 		end
-		
-		-- 检查suffix后缀词
-		if (#suffixList > 0) then
-			for _,each in ipairs(suffixList) do
-				if (each.text == cand.text) then
-					candFlag = false
-					break
-				end
-			end
-		end
-		
-		-- 普通词
-		if (candFlag) then
+	else
+		-- 其他方案直接上屏
+		for cand in input:iter() do
 			index = index + 1
 			local ordinary = ordinaryCandidate(index,env,inp,cand)
 			if (ordinary) then
@@ -476,6 +519,7 @@ local function filter(input, env)
 			end
 		end
 	end
+
 	
 	--清空无编码
 	local composition =  env.engine.context.composition

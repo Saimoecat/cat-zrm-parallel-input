@@ -42,6 +42,7 @@ return {
 				local flag = true
 				-- 本次提交
 				local lct = context:get_commit_text()
+				
 				-- 忽略字符
 				for i, v in ipairs(listArray) do
 					if (string.find(env.laststr, v) ~= nil) then
@@ -64,8 +65,30 @@ return {
 					flag = false
 				end
 				
+				-- 检查是否一样
+				if (env.laststr == lct) then
+					flag = false
+				end
+				
 				if (flag) then
-					local str = input .. "\t" .. env.lastpreedit .. "\t" .. env.laststr .. "\t" .. lct
+					local resinput = ""
+					local respreedit = ""
+
+					-- 分组去掉辅助码
+					for item in string.gmatch(env.lastpreedit, "%S+") do
+						print(item)
+						if (string.find(item, "«") == nil) then
+							resinput = resinput .. item
+							respreedit = respreedit .. item .. " "
+						else
+							local substring = string.sub(item, 1, 2)
+							resinput = resinput .. substring
+							respreedit = respreedit .. substring .. " "
+						end
+					end
+					
+					
+					local str = resinput .. "\t" .. respreedit .. "\t" .. env.laststr .. "\t" .. lct
 					local path = get_path()
 					append_new_line(str,path)
 				end

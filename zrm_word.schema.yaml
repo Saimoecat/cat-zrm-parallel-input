@@ -53,14 +53,14 @@ engine:
     - reverse_lookup_translator
     - script_translator
     - history_translator@repeat_history
-    - lua_translator@*date_translator
-    - lua_translator@*pinyin_translator
-    - lua_translator@*system_translator
-    - lua_translator@*desc_translator
-    - lua_translator@*word_translator
-    - lua_translator@*unicode_translator
-    - lua_translator@*number_translator
-    - lua_translator@*english_translator
+    #- lua_translator@*date_translator
+    #- lua_translator@*pinyin_translator
+    #- lua_translator@*system_translator
+    #- lua_translator@*desc_translator
+    #- lua_translator@*word_translator
+    #- lua_translator@*unicode_translator
+    #- lua_translator@*number_translator
+    #- lua_translator@*english_translator
     #- lua_translator@*baidu_translator
     #- lua_translator@*c2e_translator
     #- lua_translator@*extend_translator
@@ -84,11 +84,7 @@ speller:
   delimiter: " "
   algebra:
     - derive/^([a-z][a-z]|[a-z][A-Z]|[A-Z][a-z]);([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])$/$1/					#YY
-    #- derive/^(\w+);([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2_/				#YY[X]
-    #- derive/^(\w+);([A-Z])([A-Z])([A-Z])([A-Z])$/$1_$2/				#YY[X]
     - derive/^([a-z][a-z]|[a-z][A-Z]|[A-Z][a-z]);([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2$3/				#YY[XX]
-    #- derive/^(\w+);([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2$3$4_/			#YY[XXX]
-    #- derive/^(\w+);([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2$3_$4/			#YY[XXX]
     - derive/^([a-z][a-z]|[a-z][A-Z]|[A-Z][a-z]);([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2$3$4$5/			#YY[XXXX]
     - derive/^([a-z][a-z]|[a-z][A-Z]|[A-Z][a-z]);([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])([A-Z])$/$1$2$3$4$5$6$7/		#YY[XXXXZZ]
     #- abbrev/^(.).+$/$1/

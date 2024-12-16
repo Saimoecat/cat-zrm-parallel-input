@@ -271,9 +271,9 @@ local function getCand(index, context, segment, flag)
     -- 返回
     local cand = segment:get_candidate_at(index)
     if (cand) then
-        return cand.text
+        return cand
     end
-    return ""
+    return nil
 end
 
 ---
@@ -304,10 +304,71 @@ end
 local function commit(last, index, engine, context, segment, env)
     if (check(last)) then
         -- 上屏字符
-        local text = getCand(index, context, segment, true)
+        local cand = getCand(index, context, segment, true)
+		-- 检查是否空白
+		if (cand == nil) then
+			return 1
+		end
+		-- 文本​​​​​​​​​​​​​​
+		local input = context.input
+		local text = cand.text
+		local preedit = cand.preedit
+		-- 还原preedit
+		local preeditArray = { "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰" }
+		for i, v in ipairs(preeditArray) do
+			preedit = string.gsub(preedit, v, "")
+		end
+		-- 去掉空格
+		preedit = string.gsub(preedit, "%s+", "")
+		-- 截取字符串
+		input = string.sub(input, #preedit + 1)
+		
+		local flag = true
+		
+		if (input == "__") then
+			flag = false
+		elseif (input:sub(1, 2) == "as") then
+			flag = false
+		elseif (input:sub(1, 2) == "ay") then
+			flag = false
+		elseif (input == "ax") then
+			flag = false
+		elseif (input:sub(1, 2) == "au") then
+			flag = false
+		elseif (input:sub(1, 2) == "at") then
+			flag = false
+		elseif (input:sub(1, 2) == "aq") then
+			flag = false
+		elseif (cand.type == "baidu") then
+			flag = false
+		elseif (cand.type == "c2e") then
+			flag = false
+		elseif (cand.type == "extend") then
+			flag = false
+		elseif (cand.type == "auto") then
+			flag = false
+		elseif (cand.type == "completion") then
+			flag = false
+		elseif (cand.type == "phone") then
+			flag = false
+		elseif (input:sub(1, 2) == "aw") then
+			flag = false
+		elseif (input:sub(1, 2) == "az") then
+			flag = false
+		end
+
+		-- 上屏
         engine:commit_text(text)
+		-- 清空
         context:clear_previous_segment()
         context:clear()
+		-- 重新添加
+		if (input == "") then
+			context:push_input("ac")
+		elseif (flag) then
+			context:push_input(input)
+		end
+		
         return 1
     end
     return 2
@@ -545,164 +606,83 @@ local function processor(key_event, env)
                 -- 再次判断上屏编码
                 if (key_event.keycode == 103) then
                     -- 上屏首选
-                    local val = commit(groups[#groups], 0, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                        context:refresh_non_confirmed_composition()
-                    end
-                    return val
+                    return commit(groups[#groups], 0, engine, context, segment, env)
                 elseif (key_event.keycode == 102) then
                     -- 上屏2选
-                    local val = commit(groups[#groups], 1, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 1, engine, context, segment, env)
                 elseif (key_event.keycode == 100) then
                     -- 上屏3选
-                    local val = commit(groups[#groups], 2, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 2, engine, context, segment, env)
                 elseif (key_event.keycode == 115) then
                     -- 上屏4选
-                    local val = commit(groups[#groups], 3, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 3, engine, context, segment, env)
                 elseif (key_event.keycode == 97) then
                     -- 上屏5选
-                    local val = commit(groups[#groups], 4, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 4, engine, context, segment, env)
                 elseif (key_event.keycode == 98) then
                     -- 上屏6选
-                    local val = commit(groups[#groups], 5, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 5, engine, context, segment, env)
                 elseif (key_event.keycode == 118) then
                     -- 上屏7选
-                    local val = commit(groups[#groups], 6, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 6, engine, context, segment, env)
                 elseif (key_event.keycode == 99) then
                     -- 上屏8选
-                    local val = commit(groups[#groups], 7, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 7, engine, context, segment, env)
                 elseif (key_event.keycode == 120) then
                     -- 上屏9选
-                    local val = commit(groups[#groups], 8, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 8, engine, context, segment, env)
                 elseif (key_event.keycode == 122) then
                     -- 上屏10选
-                    local val = commit(groups[#groups], 9, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 9, engine, context, segment, env)
                 elseif (key_event.keycode == 71) then
                     -- 上屏11选
-                    local val = commit(groups[#groups], 10, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 10, engine, context, segment, env)
                 elseif (key_event.keycode == 70) then
                     -- 上屏12选
-                    local val = commit(groups[#groups], 11, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 11, engine, context, segment, env)
                 elseif (key_event.keycode == 68) then
                     -- 上屏13选
-                    local val = commit(groups[#groups], 12, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 12, engine, context, segment, env)
                 elseif (key_event.keycode == 83) then
                     -- 上屏14选
-                    local val = commit(groups[#groups], 13, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 13, engine, context, segment, env)
                 elseif (key_event.keycode == 65) then
                     -- 上屏15选
-                    local val = commit(groups[#groups], 14, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 14, engine, context, segment, env)
                 elseif (key_event.keycode == 66) then
                     -- 上屏16选
-                    local val = commit(groups[#groups], 15, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 15, engine, context, segment, env)
                 elseif (key_event.keycode == 86) then
                     -- 上屏17选
-                    local val = commit(groups[#groups], 16, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 16, engine, context, segment, env)
                 elseif (key_event.keycode == 67) then
                     -- 上屏18选
-                    local val = commit(groups[#groups], 17, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 17, engine, context, segment, env)
                 elseif (key_event.keycode == 88) then
                     -- 上屏19选
-                    local val = commit(groups[#groups], 18, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 18, engine, context, segment, env)
                 elseif (key_event.keycode == 90) then
                     -- 上屏20选
-                    local val = commit(groups[#groups], 19, engine, context, segment, env)
-                    if (val == 1) then
-                        context:push_input("ac")
-                    end
-                    return val
+                    return commit(groups[#groups], 19, engine, context, segment, env)
                 elseif (key_event.keycode == 116) then
                     -- et
                     if (check(groups[#groups])) then
-                        return commitText(groups[#groups], "（" .. getCand(0, context, segment, true) .. "）", engine, context, env)
+                        return commitText(groups[#groups], "（" .. getCand(0, context, segment, true).text .. "）", engine, context, env)
                     end
                 elseif (key_event.keycode == 114) then
                     -- er
                     if (check(groups[#groups])) then
-                        return commitText(groups[#groups], "《" .. getCand(0, context, segment, true) .. "》", engine, context, env)
+                        return commitText(groups[#groups], "《" .. getCand(0, context, segment, true).text .. "》", engine, context, env)
                     end
                 elseif (key_event.keycode == 119) then
                     -- eo
                     if (check(groups[#groups])) then
-                        return commitText(groups[#groups], "“" .. getCand(0, context, segment, true) .. "”", engine, context, env)
+                        return commitText(groups[#groups], "“" .. getCand(0, context, segment, true).text .. "”", engine, context, env)
                     end
                 elseif (key_event.keycode == 113) then
                     -- eq
                     if (check(groups[#groups])) then
-                        return commitText(groups[#groups], "‘" .. getCand(0, context, segment, true) .. "’", engine, context, env)
+                        return commitText(groups[#groups], "‘" .. getCand(0, context, segment, true).text .. "’", engine, context, env)
                     end
                 end
             elseif (input:sub(#input, #input) == "o") then
@@ -770,7 +750,7 @@ local function processor(key_event, env)
                 elseif (key_event.keycode == 114) then
                     --以词定字左
                     if (check(groups[#groups])) then
-                        engine:commit_text(utf8_sub(getCand(0, context, segment, true), 1, 1))
+                        engine:commit_text(utf8_sub(getCand(0, context, segment, true).text, 1, 1))
                         context:clear_previous_segment()
                         context:clear()
                         return 1
@@ -778,7 +758,7 @@ local function processor(key_event, env)
                 elseif (key_event.keycode == 101) then
                     --以词定字右
                     if (check(groups[#groups])) then
-                        engine:commit_text(utf8_sub(getCand(0, context, segment, true), -1, -1))
+                        engine:commit_text(utf8_sub(getCand(0, context, segment, true).text, -1, -1))
                         context:clear_previous_segment()
                         context:clear()
                         return 1
@@ -791,13 +771,13 @@ local function processor(key_event, env)
                         for i, v in ipairs(preeditArray) do
                             preedit = string.gsub(preedit, v, "")
                         end
-                        local result = word(preedit, getCand(0, context, segment, true))
+                        local result = word(preedit, getCand(0, context, segment, true).text)
                         return commitText(groups[#groups], result, engine, context, env)
                     end
                 elseif (key_event.keycode == 113) then
                     -- 输出明细
                     if (check(groups[#groups])) then
-                        local result = desc(getCand(0, context, segment, true))
+                        local result = desc(getCand(0, context, segment, true).text)
                         return commitText(groups[#groups], result, engine, context, env)
                     end
                 end
@@ -1068,6 +1048,12 @@ local function processor(key_event, env)
                 else
                     context:pop_input(1)
                 end
+				
+				-- 如果是aw模式则直接清空​​​​​​​​​​​​​​
+				if (#input == 4 and input:sub(1, 2) == "aw") then
+					context:clear_previous_segment()
+                    context:clear()
+				end
             end
             return 1
         end
@@ -1084,7 +1070,7 @@ local function processor(key_event, env)
             prompt = segment.prompt
         end
         -- 首选候选
-        local candidate = getCand(0, context, segment, false)
+        local candidate = getCand(0, context, segment, false).text
         -- 检查预测文本
         if (#prompt > 0) then
             local index = string.find(prompt, "​")
@@ -1123,7 +1109,7 @@ local function processor(key_event, env)
     --]]
 
     --Esc 恢复保留状态
-    --[[
+	--[[
     if (key_event.keycode == 65307) then
         if (#input == 0) then
             -- 恢复保留状态
