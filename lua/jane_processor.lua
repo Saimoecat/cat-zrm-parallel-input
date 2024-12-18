@@ -148,7 +148,7 @@ local function analyze(input)
     local matches = {}
     local code = ""
     for i, item in ipairs(list) do
-        local res = string.match(item, "[A-Z][A-Z]")
+        local res = string.match(item, "^[A-Z][A-Z]")
         if (res == nil) then
             -- 如果遇到声韵码，则添加进匹配表
             if (code ~= "") then
@@ -256,7 +256,7 @@ local function word(input, keyCode)
 	]]
     local groups = analyze(input)
     local last = groups[#groups]
-
+	
     -- 判断编码
     if (last ~= nil) then
         if (#last % 2 == 0) then

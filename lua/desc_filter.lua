@@ -184,7 +184,7 @@ local function specialCandidate (env,inp,cand,tage)
     env.countIndex = env.countIndex + 1
 
     -- 还原preedit
-    local preeditArray = { "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰" }
+    local preeditArray = {"¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰"}
     for i, v in ipairs(preeditArray) do
         cand.preedit = string.gsub(cand.preedit, v, "")
     end
@@ -223,10 +223,11 @@ local function specialCandidate (env,inp,cand,tage)
 
     local preedit = ""
     for i, v in ipairs(groups) do
-        preedit = preedit .. v
-        if (i <= #preeditArray) then
-            preedit = preedit .. preeditArray[i]
-        end
+        local j = #groups - i + 1
+		preedit = preedit .. v
+		if (j <= #preeditArray) then
+			preedit = preedit .. preeditArray[j]
+		end
         preedit = preedit .. " "
     end
 
@@ -241,7 +242,7 @@ local function ordinaryCandidate (index,env,inp,cand)
 	local flag = true
 
 	-- 还原preedit
-	local preeditArray = {"¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","⁰"}
+	local preeditArray = {"¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰"}
 	for i, v in ipairs(preeditArray) do
 		cand.preedit = string.gsub(cand.preedit, v, "")
 	end
@@ -326,9 +327,10 @@ local function ordinaryCandidate (index,env,inp,cand)
 
 	local preedit = ""
 	for i, v in ipairs(groups) do
-			preedit = preedit .. v
-		if (i <= #preeditArray) then
-			preedit = preedit .. preeditArray[i]
+		local j = #groups - i + 1
+		preedit = preedit .. v
+		if (j <= #preeditArray) then
+			preedit = preedit .. preeditArray[j]
 		end
 		preedit = preedit .. " "
 	end

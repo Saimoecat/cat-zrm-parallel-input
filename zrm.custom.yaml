@@ -33,10 +33,11 @@ patch:
     #
     
     # 处理单手击的表示（添加下划线，表示另一手未击）  #允许存在单手配左右空格，允许单手数字区表示
-      - xform/(^[qwertasdfgzxcvb12345]+)([一二三四五壹贰叁肆伍]*)$/$1_$2/
+      - xform/^([qwertasdfgzxcvb12345]+)([一二三四五壹贰叁肆伍]*)$/$1_$2/
       # xx => xx_
       - xform/^([yuiophjklAnmCXZ67890]+)([一二三四五壹贰叁肆伍]*)$/_$1$2/
       # yy => _yy
+      - xform/^([qwertasdfgzxcvb12345]+)([yuiophjklAnmCXZ67890]+)([一二三四五壹贰叁肆伍]*)$/$1$2$3/
     #
     
     # 将编码包装（用一对尖括号包裹起来）
@@ -55,14 +56,14 @@ patch:
     
       # 字母部分指法映射(齐列&标准) #被注释掉的部分是冲突的，其它的应该是一样的
       # 没有经过仔细的校对，有问题的话可能得麻烦自己增改一下
-      - xform=(<sef>|<jil>)=Q=
+      - xform=(<zv>|<mZ>)=Q=
       - xform=(<wv>|<no>)=W=
       - xform=(<ev>|<ni>)=E=
       - xform=(<et>|<yi>)=R=
       - xform=(<qt>|<yp>)=T=
       - xform=(<wt>|<yo>)=Y=
       - xform=(<af>|<jA>)=U=
-      - xform=(<wef>|<jio>)=I=
+      - xform=(<xv>|<mX>)=I=
       - xform=(<aw>|<oA>)=O=
       - xform=(<qf>|<jp>)=P=
       - xform=(<wer>|<uio>)=/=
@@ -77,7 +78,7 @@ patch:
       - xform=(<dg>|<hk>)=G=
       - xform=(<ar>|<uA>)=H=
       - xform=(<xf>|<jX>)=J=
-      - xform=(<sdf>|<jkl>)=K=
+      - xform=(<xc>|<CX>)=K=
       - xform=(<sr>|<ul>)=L=
       - xform=(<dc>|<mk>)=~=
       - xform=(<fv>|<nj>)=|=
@@ -134,9 +135,9 @@ patch:
       - xform=(<b>|<n>)=b=
       - xform=(<sc>|<ml>)=n=
       - xform=(<cv>|<mC>)=m=
-      - xform=(<xc>|<CX>)=,=
-      - xform=(<xv>|<mX>)=.=
-      - xform=(<zv>|<mZ>)=!=
+      - xform=(<sdf>|<jkl>)=,=
+      - xform=(<wef>|<jio>)=.=
+      - xform=(<sef>|<jil>)=!=
       - xform=(<zb>|<nZ>)=?=
       - xform=(<zc>|<CZ>)=#=
       - xform=(<zxc>|<CXZ>)=*=
@@ -181,7 +182,7 @@ patch:
 ################## 单空格 ############
       - xform|(.)_<一>|<"1>$1_|
       - xform|_(.)<一>|<"1>_$1|
-      - xform|(..)<一>|$1<1>|
+      - xform|(..)<一>|<"1>$1|
       - xform|^<一>|<1>|
 #####  使用多空格请先把这段单空格配置注释掉  #########################################
 

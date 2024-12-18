@@ -121,15 +121,15 @@
 | i  |                    | 声母<code>ch</code>                                      |
 | u  |                    | 声母<code>sh</code>                                      |
 | v  |                    | 声母<code>zh</code>                                      |
-| r  |   [rf](#快速移动光标)    | 移动光标，快速移动光标到第2个字后                                      |
-|    |   [rd](#快速移动光标)    | 移动光标，快速移动光标到第3个字后                                      |
-|    |   [rs](#快速移动光标)    | 移动光标，快速移动光标到第4个字后                                      |
-|    |   [ra](#快速移动光标)    | 移动光标，快速移动光标到第5个字后                                      |
-|    |   [rb](#快速移动光标)    | 移动光标，快速移动光标到第6个字后                                      |
-|    |   [rv](#快速移动光标)    | 移动光标，快速移动光标到第7个字后                                      |
-|    |   [rc](#快速移动光标)    | 移动光标，快速移动光标到第8个字后                                      |
-|    |   [rx](#快速移动光标)    | 移动光标，快速移动光标到第9个字后                                      |
-|    |   [rz](#快速移动光标)    | 移动光标，快速移动光标到第10个字后                                     |
+| r  |   [rf](#快速移动光标)    | 移动光标，快速移动光标到倒数第2个字后/快速给倒数第2个字加辅                        |
+|    |   [rd](#快速移动光标)    | 移动光标，快速移动光标到倒数第3个字后/快速给倒数第3个字加辅                        |
+|    |   [rs](#快速移动光标)    | 移动光标，快速移动光标到倒数第4个字后/快速给倒数第4个字加辅                        |
+|    |   [ra](#快速移动光标)    | 移动光标，快速移动光标到倒数第5个字后/快速给倒数第5个字加辅                        |
+|    |   [rb](#快速移动光标)    | 移动光标，快速移动光标到倒数第6个字后/快速给倒数第6个字加辅                        |
+|    |   [rv](#快速移动光标)    | 移动光标，快速移动光标到倒数第7个字后/快速给倒数第7个字加辅                        |
+|    |   [rc](#快速移动光标)    | 移动光标，快速移动光标到倒数第8个字后/快速给倒数第8个字加辅                        |
+|    |   [rx](#快速移动光标)    | 移动光标，快速移动光标到倒数第9个字后/快速给倒数第9个字加辅                        |
+|    |   [rz](#快速移动光标)    | 移动光标，快速移动光标到倒数第10个字后/快速给倒数第10个字加辅                      |
 | _  |    [__](#重复上屏)     | 重复上次上屏，上次上屏内容再次上屏                                      |
 
 ## 输入方式说明
@@ -221,7 +221,7 @@ o</code>上屏模式只负责记录）之后会根据词库经常连续打的词
 在<code>zrm.schema.yaml</code>文件中，<code>- lua_translator@*english_translator</code>处取消注释即开启功能，用<code>aq</code>触发，使用<code>'</code>
 号分割单词。候选中有小写下划线模式、大写下划线模式、小驼峰模式、大驼峰模式。
 
-<img src="./images/输入模式-英文单词输入.png" alt="英文单词输入">
+<img src="./images/输入方式-英文单词输入.png" alt="英文单词输入">
 
 ### 清空输入编码：
 
@@ -356,16 +356,27 @@ o</code>上屏模式只负责记录）之后会根据词库经常连续打的词
 
 ### 快速移动光标：
 
-输入编码时移动光标可用<kbd>左SHIFT</kbd>将光标向左移动一个字，<kbd>右SHIFT</kbd>将光标向右移动一个字，也可使用<code>r</code>加上对应字母在2~
-10个字中指定移动，为什么是从2开始？因为移动到第1个字后只需要按<kbd>右SHIFT</kbd>即可。输入编码时，编码上会有上标<code>1-9</code>提示位置。
+输入编码时移动光标可用<kbd>左SHIFT</kbd>将光标向左移动一个字，<kbd>右SHIFT</kbd>将光标向右移动一个字，也可使用<code>r</code>加上对应字母在倒数第2~10个字中指定移动。输入编码时，编码上会有上标<code>1-9</code>提示位置。
 
 - 编码位置提示：
 
   <img src="./images/输入方式-编码位置提示.png" alt="编码位置提示">
 
-- 指定移动键位说明：
+- 指定移动键位说明，对应上标位置：
 
   <img src="./images/快速移动光标.png" alt="快速移动光标">
+
+### 快速添加辅助码：
+
+当输入的辅助码未分配时，这时使用<code>r</code>加上对应字母则不是移动光标，而是将未分配的辅助码直接分配到对应位置上。输入编码时，编码上会有上标<code>1-9</code>提示位置。
+
+- 例如：“好的我知道了”，假如现在要给“我”加一个辅助码，那么在末尾直接输入“我”的辅助码：TU
+
+  <img src="./images/输入方式-快速指定辅助码-1.png" alt="快速指定辅助码-1">
+
+- 注意看“我”的上标位置：<code>4</code>，那么这时使用移动光标的功能就不是移动光标，而是将未分配的辅助码<code>TU</code>直接分配给指定位置
+
+  <img src="./images/输入方式-快速指定辅助码-2.png" alt="快速指定辅助码-2">
 
 ### 输入预测：
 
@@ -377,6 +388,20 @@ TAB</kbd>键直接将候选项和预测的词一起上屏。
   <img src="./images/输入方式-预测输入.png" alt="预测输入">
 
 - 按<kbd>TAB</kbd>键可直接上屏“查看说明书安装和配置的具体方法”
+
+### 前缀词联想：
+
+在<code>zrm.schema.yaml</code>文件中，<code>- lua_processor@*suffix_processor</code>处取消注释即开启功能，会根据刚刚上屏的词动态调整下一个词的优先级。
+
+- 例如：“组长”和“族长”是重码，
+
+- 如果刚刚输入了“小组”，那么输入zu zhang的音时，会将“组长”提前到首位
+
+  <img src="./images/标记-前缀词联想-1.png" alt="联想相关词-2">
+
+- 如果刚刚输入的词是“家族”，那么输入zu zhang的音时，会将“族长”提前到首位
+
+  <img src="./images/标记-前缀词联想-2.png" alt="联想相关词-2">
 
 ### 一击码：
 
@@ -393,13 +418,31 @@ TAB</kbd>键直接将候选项和预测的词一起上屏。
 
 使用<code>__</code>重复上次上屏内容。
 
-### 其他：
+### 标记说明：
 
-- 带有<code>〔〶〕</code>标识的即是长词联想
+- 带有<code>〔〶〕</code>标识的即是词库长词联想
 
   <img src="./images/输入方式-长词联想.png" alt="长词联想">
 
-- 带有<code>⚡</code>标识的即是用户词库的词
+- 带有<code>〔㉿〕</code>标识的即是云词库的词
+
+  <img src="./images/输入方式-云词库.png" alt="云词库">
+
+- 带有<code>〔E〕</code>标识的即是云联想的长词
+
+  <img src="./images/输入方式-联想相关词-2.png" alt="联想相关词-2">
+
+- 带有<code>〔⚡〕</code>标识的即是用户词库的词
+
+  <img src="./images/标记-用户词.png" alt="联想相关词-2">
+
+- 带有<code>〔📌〕</code>标识的即是用户置顶的词
+
+  <img src="./images/标记-置顶词.png" alt="联想相关词-2">
+
+- 带有<code>〔☯〕</code>标识的即是前缀词联想的词
+
+  <img src="./images/标记-前缀词联想-1.png" alt="联想相关词-2">
 
 ## 码元及键位
 
@@ -417,7 +460,7 @@ TAB</kbd>键直接将候选项和预测的词一起上屏。
 | 8  | h  |       <kbd>w</kbd><kbd>f</kbd>       |       <kbd>o</kbd><kbd>j</kbd>       |
 | 9  | i  |       <kbd>w</kbd><kbd>e</kbd>       |       <kbd>o</kbd><kbd>i</kbd>       |
 | 10 | j  |       <kbd>d</kbd><kbd>f</kbd>       |       <kbd>k</kbd><kbd>j</kbd>       |
-| 11 | k  | <kbd>s</kbd><kbd>d</kbd><kbd>f</kbd> | <kbd>l</kbd><kbd>k</kbd><kbd>j</kbd> |
+| 11 | k  |       <kbd>s</kbd><kbd>d</kbd>       |       <kbd>l</kbd><kbd>k</kbd>       |
 | 12 | l  |       <kbd>s</kbd><kbd>f</kbd>       |       <kbd>l</kbd><kbd>j</kbd>       |
 | 13 | m  |       <kbd>c</kbd><kbd>v</kbd>       |       <kbd>,</kbd><kbd>m</kbd>       |
 | 14 | n  |       <kbd>s</kbd><kbd>c</kbd>       |       <kbd>l</kbd><kbd>m</kbd>       |
@@ -441,15 +484,15 @@ TAB</kbd>键直接将候选项和预测的词一起上屏。
 | 32 | F  |       <kbd>s</kbd><kbd>g</kbd>       |       <kbd>l</kbd><kbd>h</kbd>       |
 | 33 | G  |       <kbd>d</kbd><kbd>g</kbd>       |       <kbd>k</kbd><kbd>h</kbd>       |
 | 34 | H  |       <kbd>a</kbd><kbd>r</kbd>       |       <kbd>o</kbd><kbd>j</kbd>       |
-| 35 | I  | <kbd>w</kbd><kbd>e</kbd><kbd>f</kbd> | <kbd>o</kbd><kbd>i</kbd><kbd>j</kbd> |
+| 35 | I  |       <kbd>x</kbd><kbd>v</kbd>       |       <kbd>.</kbd><kbd>m</kbd>       |
 | 36 | J  |       <kbd>x</kbd><kbd>f</kbd>       |       <kbd>.</kbd><kbd>j</kbd>       |
-| 37 | K  | <kbd>s</kbd><kbd>d</kbd><kbd>f</kbd> | <kbd>l</kbd><kbd>k</kbd><kbd>j</kbd> |
+| 37 | K  |       <kbd>x</kbd><kbd>c</kbd>       |       <kbd>.</kbd><kbd>,</kbd>       |
 | 38 | L  |       <kbd>s</kbd><kbd>r</kbd>       |       <kbd>l</kbd><kbd>u</kbd>       |
 | 39 | M  |       <kbd>w</kbd><kbd>d</kbd>       |       <kbd>o</kbd><kbd>k</kbd>       |
 | 40 | N  |       <kbd>s</kbd><kbd>e</kbd>       |       <kbd>l</kbd><kbd>i</kbd>       |
 | 41 | O  |       <kbd>a</kbd><kbd>w</kbd>       |       <kbd>;</kbd><kbd>o</kbd>       |
 | 42 | P  |       <kbd>q</kbd><kbd>f</kbd>       |       <kbd>p</kbd><kbd>j</kbd>       |
-| 43 | Q  | <kbd>s</kbd><kbd>e</kbd><kbd>f</kbd> | <kbd>l</kbd><kbd>i</kbd><kbd>j</kbd> |
+| 43 | Q  |       <kbd>z</kbd><kbd>v</kbd>       |       <kbd>/</kbd><kbd>m</kbd>       |
 | 44 | R  |       <kbd>e</kbd><kbd>t</kbd>       |       <kbd>i</kbd><kbd>y</kbd>       |
 | 45 | S  |       <kbd>s</kbd><kbd>v</kbd>       |       <kbd>l</kbd><kbd>n</kbd>       |
 | 46 | T  |       <kbd>q</kbd><kbd>t</kbd>       |       <kbd>p</kbd><kbd>y</kbd>       |
@@ -469,9 +512,9 @@ TAB</kbd>键直接将候选项和预测的词一起上屏。
 | 60 | 8  |       <kbd>2</kbd><kbd>3</kbd>       |       <kbd>9</kbd><kbd>8</kbd>       |
 | 61 | 9  |       <kbd>2</kbd><kbd>4</kbd>       |       <kbd>9</kbd><kbd>7</kbd>       |
 | 62 | 0  |       <kbd>1</kbd><kbd>4</kbd>       |       <kbd>0</kbd><kbd>7</kbd>       |
-| 63 | ,  |       <kbd>x</kbd><kbd>c</kbd>       |       <kbd>.</kbd><kbd>,</kbd>       |
-| 64 | .  |       <kbd>x</kbd><kbd>v</kbd>       |       <kbd>.</kbd><kbd>m</kbd>       |
-| 65 | !  |       <kbd>z</kbd><kbd>v</kbd>       |       <kbd>/</kbd><kbd>m</kbd>       |
+| 63 | ,  | <kbd>s</kbd><kbd>d</kbd><kbd>f</kbd> | <kbd>l</kbd><kbd>k</kbd><kbd>j</kbd> |
+| 64 | .  | <kbd>w</kbd><kbd>e</kbd><kbd>f</kbd> | <kbd>o</kbd><kbd>i</kbd><kbd>j</kbd> |
+| 65 | !  | <kbd>s</kbd><kbd>e</kbd><kbd>f</kbd> | <kbd>l</kbd><kbd>i</kbd><kbd>j</kbd> |
 | 66 | ?  |       <kbd>z</kbd><kbd>b</kbd>       |       <kbd>/</kbd><kbd>n</kbd>       |
 | 67 | :  |       <kbd>a</kbd><kbd>s</kbd>       |       <kbd>;</kbd><kbd>l</kbd>       |
 | 68 | ;  |       <kbd>a</kbd><kbd>d</kbd>       |       <kbd>;</kbd><kbd>k</kbd>       |
@@ -532,5 +575,5 @@ TAB</kbd>键直接将候选项和预测的词一起上屏。
 - 使用<kbd>ENTER</kbd>，清空当前编码，等同于<kbd>ESC</kbd>。
 
 - 使用<kbd>UP</kbd>向上翻页，<kbd>DOWN</kbd>向下翻页。
--
 - 使用<kbd>LEFT</kbd>选择上一个候选词，<kbd>RIGHT</kbd>选择下一个候选词。
+- 输入单个文字时，输入全码会自动上屏当前文字。

@@ -314,7 +314,7 @@ local function commit(last, index, engine, context, segment, env)
 		local text = cand.text
 		local preedit = cand.preedit
 		-- 还原preedit
-		local preeditArray = { "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰" }
+		local preeditArray = {"¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰"}
 		for i, v in ipairs(preeditArray) do
 			preedit = string.gsub(preedit, v, "")
 		end
@@ -403,14 +403,41 @@ local function move(groups, index, context)
             text = string.gsub(text, "«", "")
             text = string.gsub(text, "»", "")
             num = num + #text
-            if (i >= index) then
-                break
-            end
+			if (i == (#groups - index)) then
+				break
+			end
         end
         context.caret_pos = num
         return 1
     end
     return 2
+end
+
+---
+--- 插入辅码
+--- @param context table context对象
+---
+local function insertFu(groups, index, context)
+        local last = groups[#groups]
+		last = string.sub(last, 1, 2)
+
+		local inp = ""
+		for i = 1, #groups - 1 do
+			local text = groups[i]
+			text = string.gsub(text, "«", "")
+			text = string.gsub(text, "»", "")
+			inp = inp .. text
+			if (i == (#groups - index)) then
+				inp = inp .. last
+			end
+		end
+		
+		if (inp ~= "") then
+			context.input = inp
+			return 1
+		end
+        
+        return 2
 end
 
 ---
@@ -533,6 +560,107 @@ function split(inputstr, sep)
     return t
 end
 
+
+-- 首字的辅助码
+function firstFu (groups, keycode)
+	-- 末尾编码
+	local last = groups[#groups]
+	local res = string.match(last, "^\"[A-Z]$")
+	local zm = ""
+
+	-- 大写字母数组
+	local letterArray = {
+		"A", "B", "C", "D", "E", "F", "G",
+		"H", "I", "J", "K", "L", "M", "N",
+		"O", "P", "Q", "R", "S", "T",
+		"U", "V", "W", "X", "Y", "Z"
+	}
+	-- 大写字母数组
+	local numberArray = {
+		65, 66, 67, 68, 69, 70, 71,
+		72, 73, 74, 75, 76, 77, 78,
+		79, 80, 81, 82, 83, 84,
+		85, 86, 87, 88, 89, 90
+	}
+	for i = 1, #numberArray do
+		if (keycode == numberArray[i]) then
+			zm = letterArray[i]
+			break
+		end
+	end
+
+	if (res ~= nil and zm ~= "") then
+		local inp = ""
+		local sub = string.gsub(last, "\"", "")
+		
+		-- 给首字加辅
+        for i = 1, #groups - 1 do
+            inp = inp .. groups[i]
+            if (i == 1) then
+                inp = inp .. sub .. zm
+            end
+        end
+		-- 去掉符号
+		inp = string.gsub(inp, " ", "")
+		inp = string.gsub(inp, "«", "")
+		inp = string.gsub(inp, "»", "")
+		return inp
+	end
+	return ""
+end
+
+-- 在句首加字
+function firstZi (groups, keycode)
+    -- 末尾编码
+    local last = groups[#groups]
+    local res = string.match(last, "^\"[a-zA-Z]$")
+    local zm = ""
+
+    -- 字母数组
+    local letterArray = {
+        "a", "b", "c", "d", "e", "f", "g",
+        "h", "i", "j", "k", "l", "m", "n",
+        "o", "p", "q", "r", "s", "t",
+        "u", "v", "w", "x", "y", "z",
+        "A", "B", "C", "D", "E", "F", "G",
+        "H", "I", "J", "K", "L", "M", "N",
+        "O", "P", "Q", "R", "S", "T",
+        "U", "V", "W", "X", "Y", "Z"
+    }
+    -- 字母数组
+    local numberArray = {
+        97, 98, 99, 100, 101, 102, 103,
+        104, 105, 106, 107, 108, 109, 110,
+        111, 112, 113, 114, 115, 116,
+        117, 118, 119, 120, 121, 122,
+        65, 66, 67, 68, 69, 70, 71,
+        72, 73, 74, 75, 76, 77, 78,
+        79, 80, 81, 82, 83, 84,
+        85, 86, 87, 88, 89, 90
+    }
+    for i = 1, #numberArray do
+        if (keycode == numberArray[i]) then
+            zm = letterArray[i]
+            break
+        end
+    end
+
+    if (res ~= nil and zm ~= "") then
+        local sub = string.gsub(last, "\"", "")
+        local inp = sub .. zm
+
+        for i = 1, #groups - 1 do
+            inp = inp .. groups[i]
+        end
+        -- 去掉符号
+        inp = string.gsub(inp, " ", "")
+        inp = string.gsub(inp, "«", "")
+        inp = string.gsub(inp, "»", "")
+        return inp
+    end
+    return ""
+end
+
 ---
 ---初始化
 ---@param env object 上下文对象
@@ -575,7 +703,7 @@ local function processor(key_event, env)
 	end
 
     -- 还原preedit
-    local preeditArray = { "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰" }
+    local preeditArray = {"¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰"}
     for i, v in ipairs(preeditArray) do
         text = string.gsub(text, v, "")
     end
@@ -585,6 +713,30 @@ local function processor(key_event, env)
     for each in string.gmatch(text, "%S+") do
         table.insert(groups, each)
     end
+	
+	-- 带空格的组合
+	if (#groups > 0 and string.find(groups[#groups], "\"") ~= nil) then
+		-- 给首字加辅助码
+		local fu = firstFu(groups, key_event.keycode)
+		if (fu ~= "") then
+			context.input = fu
+			return 1
+		end
+		
+		-- 在句首加字
+		local zi = firstZi(groups, key_event.keycode)
+		if (zi ~= "") then
+			context.input = zi
+			return 1
+		end
+		
+		-- 忽略其他编码
+		local last = groups[#groups]
+		if (#last == 2) then
+			context:pop_input(2)
+			return 1
+		end
+	end
 	
 	-- 最后选中
 	if (check(groups[#groups]) == false) then
@@ -966,35 +1118,71 @@ local function processor(key_event, env)
                     end
                 end
             elseif (input:sub(#input, #input) == "r") then
-                -- 移动光标到指定位置(移动到第一个字用右Shift)
-                if (key_event.keycode == 102) then
-                    -- 移动光标到第2个字编码后
-                    return move(groups, 2, context)
-                elseif (key_event.keycode == 100) then
-                    -- 移动光标到第3个字编码后
-                    return move(groups, 3, context)
-                elseif (key_event.keycode == 115) then
-                    -- 移动光标到第4个字编码后
-                    return move(groups, 4, context)
-                elseif (key_event.keycode == 97) then
-                    -- 移动光标到第5个字编码后
-                    return move(groups, 5, context)
-                elseif (key_event.keycode == 98) then
-                    -- 移动光标到第6个字编码后
-                    return move(groups, 6, context)
-                elseif (key_event.keycode == 118) then
-                    -- 移动光标到第7个字编码后
-                    return move(groups, 7, context)
-                elseif (key_event.keycode == 99) then
-                    -- 移动光标到第8个字编码后
-                    return move(groups, 8, context)
-                elseif (key_event.keycode == 120) then
-                    -- 移动光标到第9个字编码后
-                    return move(groups, 9, context)
-                elseif (key_event.keycode == 122) then
-                    -- 移动光标到第10个字编码后
-                    return move(groups, 10, context)
-                end
+				local res = string.match(groups[#groups], "^[A-Z][A-Z]r$")
+				-- 判断是移动光标还是移动辅码
+				if (res == nil) then
+					-- 移动光标到指定位置
+					if (key_event.keycode == 102) then
+						-- 移动光标到倒数第2个字编码后
+						return move(groups, 2, context)
+					elseif (key_event.keycode == 100) then
+						-- 移动光标到倒数第3个字编码后
+						return move(groups, 3, context)
+					elseif (key_event.keycode == 115) then
+						-- 移动光标到倒数第4个字编码后
+						return move(groups, 4, context)
+					elseif (key_event.keycode == 97) then
+						-- 移动光标到倒数第5个字编码后
+						return move(groups, 5, context)
+					elseif (key_event.keycode == 98) then
+						-- 移动光标到倒数第6个字编码后
+						return move(groups, 6, context)
+					elseif (key_event.keycode == 118) then
+						-- 移动光标到倒数第7个字编码后
+						return move(groups, 7, context)
+					elseif (key_event.keycode == 99) then
+						-- 移动光标到倒数第8个字编码后
+						return move(groups, 8, context)
+					elseif (key_event.keycode == 120) then
+						-- 移动光标到倒数第9个字编码后
+						return move(groups, 9, context)
+					elseif (key_event.keycode == 122) then
+						-- 移动光标到倒数第10个字编码后
+						return move(groups, 10, context)
+					end
+				else
+					-- 移动辅码到指定位置
+					if (key_event.keycode == 102) then
+						-- 移动辅码到倒数第2个字编码后
+						return insertFu(groups, 2, context)
+					elseif (key_event.keycode == 100) then
+						-- 移动辅码到倒数第3个字编码后
+						return insertFu(groups, 3, context)
+					elseif (key_event.keycode == 115) then
+						-- 移动辅码到倒数第4个字编码后
+						return insertFu(groups, 4, context)
+					elseif (key_event.keycode == 97) then
+						-- 移动辅码到倒数第5个字编码后
+						return insertFu(groups, 5, context)
+					elseif (key_event.keycode == 98) then
+						-- 移动辅码到倒数第6个字编码后
+						return insertFu(groups, 6, context)
+					elseif (key_event.keycode == 118) then
+						-- 移动辅码到倒数第7个字编码后
+						return insertFu(groups, 7, context)
+					elseif (key_event.keycode == 99) then
+						-- 移动辅码到倒数第8个字编码后
+						return insertFu(groups, 8, context)
+					elseif (key_event.keycode == 120) then
+						-- 移动辅码到倒数第9个字编码后
+						return insertFu(groups, 9, context)
+					elseif (key_event.keycode == 122) then
+						-- 移动辅码到倒数第10个字编码后
+						return insertFu(groups, 10, context)
+					end
+				end
+				
+                
             end
 
 

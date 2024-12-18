@@ -107,7 +107,7 @@ return {
 		end
 		
 		-- 还原preedit
-		local preeditArray = { "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰" }
+		local preeditArray = {"¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "⁰"}
 		for i, v in ipairs(preeditArray) do
 			text = string.gsub(text, v, "")
 		end
