@@ -1,0 +1,37 @@
+.show {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1144px;
+    margin: 10px auto;
+    padding: 0 15px;
+    height: 64px;
+    user-select: none;
+}
+
+.show .item {
+    flex: 1;
+    border: 4px dashed #ccc;
+    border-radius: 20px;
+    font-size: 32px;
+    line-height: 52px;
+    text-align: center;
+    height: 52px;
+    color: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: TumanPUA, serif;
+}
+
+.show .item .left {
+    color: red;
+    font-weight: bold;
+    transform: scale(1.1)
+}
+
+.show .item .right {
+    color: blue;
+    font-weight: bold;
+    transform: scale(1.1)
+}

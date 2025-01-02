@@ -356,7 +356,8 @@ o</code>上屏模式只负责记录）之后会根据词库经常连续打的词
 
 ### 快速移动光标：
 
-输入编码时移动光标可用<kbd>左SHIFT</kbd>将光标向左移动一个字，<kbd>右SHIFT</kbd>将光标向右移动一个字，也可使用<code>r</code>加上对应字母在倒数第2~10个字中指定移动。输入编码时，编码上会有上标<code>1-9</code>提示位置。
+输入编码时移动光标可用<kbd>左SHIFT</kbd>将光标向左移动一个字，<kbd>右SHIFT</kbd>将光标向右移动一个字，也可使用<code>r</code>加上对应字母在倒数第2~
+10个字中指定移动。输入编码时，编码上会有上标<code>1-9</code>提示位置。
 
 - 编码位置提示：
 
@@ -444,6 +445,10 @@ TAB</kbd>键直接将候选项和预测的词一起上屏。
 
   <img src="./images/标记-前缀词联想-1.png" alt="联想相关词-2">
 
+## 空格组合
+
+使用双大小+<kbd>空格</kbd>时，则是对首字添加辅助码；使用音码+<kbd>空格</kbd>时，则会将现第一个候选词顶上屏，然后重新开始输入类似于“顶功”的效果。
+
 ## 码元及键位
 
 <code>26小写字母</code>+<code>26大写字母</code>+<code>10数字</code>+<code>30符号</code>+<code>下划线</code>=<code>93个</code>
@@ -513,9 +518,9 @@ TAB</kbd>键直接将候选项和预测的词一起上屏。
 | 61 | 9  |       <kbd>2</kbd><kbd>4</kbd>       |       <kbd>9</kbd><kbd>7</kbd>       |
 | 62 | 0  |       <kbd>1</kbd><kbd>4</kbd>       |       <kbd>0</kbd><kbd>7</kbd>       |
 | 63 | ,  | <kbd>s</kbd><kbd>d</kbd><kbd>f</kbd> | <kbd>l</kbd><kbd>k</kbd><kbd>j</kbd> |
-| 64 | .  | <kbd>w</kbd><kbd>e</kbd><kbd>f</kbd> | <kbd>o</kbd><kbd>i</kbd><kbd>j</kbd> |
-| 65 | !  | <kbd>s</kbd><kbd>e</kbd><kbd>f</kbd> | <kbd>l</kbd><kbd>i</kbd><kbd>j</kbd> |
-| 66 | ?  |       <kbd>z</kbd><kbd>b</kbd>       |       <kbd>/</kbd><kbd>n</kbd>       |
+| 64 | .  |       <kbd>a</kbd><kbd>g</kbd>       |       <kbd>;</kbd><kbd>h</kbd>       |
+| 65 | !  | <kbd>w</kbd><kbd>e</kbd><kbd>f</kbd> | <kbd>o</kbd><kbd>i</kbd><kbd>j</kbd> |
+| 66 | ?  | <kbd>s</kbd><kbd>e</kbd><kbd>f</kbd> | <kbd>l</kbd><kbd>i</kbd><kbd>j</kbd> |
 | 67 | :  |       <kbd>a</kbd><kbd>s</kbd>       |       <kbd>;</kbd><kbd>l</kbd>       |
 | 68 | ;  |       <kbd>a</kbd><kbd>d</kbd>       |       <kbd>;</kbd><kbd>k</kbd>       |
 | 69 | '  | <kbd>a</kbd><kbd>s</kbd><kbd>d</kbd> | <kbd>;</kbd><kbd>l</kbd><kbd>k</kbd> |
@@ -527,8 +532,8 @@ TAB</kbd>键直接将候选项和预测的词一起上屏。
 | 75 | ]  | <kbd>e</kbd><kbd>r</kbd><kbd>t</kbd> | <kbd>o</kbd><kbd>i</kbd><kbd>u</kbd> |
 | 76 | (  |       <kbd>f</kbd><kbd>g</kbd>       |       <kbd>j</kbd><kbd>h</kbd>       |
 | 77 | )  | <kbd>d</kbd><kbd>f</kbd><kbd>g</kbd> | <kbd>k</kbd><kbd>j</kbd><kbd>h</kbd> |
-| 78 | <  |       <kbd>a</kbd><kbd>t</kbd>       |       <kbd>;</kbd><kbd>y</kbd>       |
-| 79 | >  |       <kbd>a</kbd><kbd>g</kbd>       |       <kbd>;</kbd><kbd>h</kbd>       |
+| 78 | <  |       <kbd>1</kbd><kbd>3</kbd>       |       <kbd>0</kbd><kbd>8</kbd>       |
+| 79 | >  |       <kbd>1</kbd><kbd>2</kbd>       |       <kbd>0</kbd><kbd>9</kbd>       |
 | 80 | {  |       <kbd>r</kbd><kbd>g</kbd>       |       <kbd>u</kbd><kbd>h</kbd>       |
 | 81 | }  |       <kbd>e</kbd><kbd>g</kbd>       |       <kbd>i</kbd><kbd>h</kbd>       |
 | 82 | =  |       <kbd>q</kbd><kbd>g</kbd>       |       <kbd>p</kbd><kbd>h</kbd>       |
@@ -540,8 +545,8 @@ TAB</kbd>键直接将候选项和预测的词一起上屏。
 | 88 | &  | <kbd>x</kbd><kbd>c</kbd><kbd>v</kbd> | <kbd>.</kbd><kbd>,</kbd><kbd>m</kbd> |
 | 89 | #  |       <kbd>z</kbd><kbd>c</kbd>       |       <kbd>/</kbd><kbd>,</kbd>       |
 | 90 | %  |       <kbd>q</kbd><kbd>e</kbd>       |       <kbd>p</kbd><kbd>i</kbd>       |
-| 91 | `  |       <kbd>1</kbd><kbd>3</kbd>       |       <kbd>0</kbd><kbd>8</kbd>       |
-| 92 | ^  |       <kbd>1</kbd><kbd>2</kbd>       |       <kbd>0</kbd><kbd>9</kbd>       |
+| 91 | `  |       <kbd>a</kbd><kbd>t</kbd>       |       <kbd>;</kbd><kbd>y</kbd>       |
+| 92 | ^  |       <kbd>z</kbd><kbd>b</kbd>       |       <kbd>/</kbd><kbd>n</kbd>       |
 | 93 | _  |       <kbd>r</kbd><kbd>f</kbd>       |       <kbd>u</kbd><kbd>j</kbd>       |
 
 ## 其他

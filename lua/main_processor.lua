@@ -661,6 +661,50 @@ function firstZi (groups, keycode)
     return ""
 end
 
+-- 顶字
+function dingZi (groups, keycode)
+    -- 末尾编码
+    local last = groups[#groups]
+    local res = string.match(last, "^\"[a-zA-Z]$")
+    local zm = ""
+
+    -- 字母数组
+    local letterArray = {
+        "a", "b", "c", "d", "e", "f", "g",
+        "h", "i", "j", "k", "l", "m", "n",
+        "o", "p", "q", "r", "s", "t",
+        "u", "v", "w", "x", "y", "z",
+        "A", "B", "C", "D", "E", "F", "G",
+        "H", "I", "J", "K", "L", "M", "N",
+        "O", "P", "Q", "R", "S", "T",
+        "U", "V", "W", "X", "Y", "Z"
+    }
+    -- 字母数组
+    local numberArray = {
+        97, 98, 99, 100, 101, 102, 103,
+        104, 105, 106, 107, 108, 109, 110,
+        111, 112, 113, 114, 115, 116,
+        117, 118, 119, 120, 121, 122,
+        65, 66, 67, 68, 69, 70, 71,
+        72, 73, 74, 75, 76, 77, 78,
+        79, 80, 81, 82, 83, 84,
+        85, 86, 87, 88, 89, 90
+    }
+    for i = 1, #numberArray do
+        if (keycode == numberArray[i]) then
+            zm = letterArray[i]
+            break
+        end
+    end
+
+    if (res ~= nil and zm ~= "") then
+        local sub = string.gsub(last, "\"", "")
+        local inp = sub .. zm
+        return inp
+    end
+    return ""
+end
+
 ---
 ---初始化
 ---@param env object 上下文对象
@@ -715,7 +759,7 @@ local function processor(key_event, env)
     end
 	
 	-- 带空格的组合
-	if (#groups > 0 and string.find(groups[#groups], "\"") ~= nil) then
+	if (#groups > 1 and string.find(groups[#groups], "\"") ~= nil) then
 		-- 给首字加辅助码
 		local fu = firstFu(groups, key_event.keycode)
 		if (fu ~= "") then
@@ -724,8 +768,13 @@ local function processor(key_event, env)
 		end
 		
 		-- 在句首加字
-		local zi = firstZi(groups, key_event.keycode)
+		local zi = dingZi(groups, key_event.keycode)
 		if (zi ~= "") then
+			context:pop_input(2)
+			local candidate = getCand(0,context,segment,false)
+			if (candidate ~= "") then
+				engine:commit_text(candidate.text)
+			end
 			context.input = zi
 			return 1
 		end
@@ -974,6 +1023,12 @@ local function processor(key_event, env)
                         end
                         ]]
                         context:pop_input(3)
+						
+						-- 如果是aw模式则直接清空​​​​​​​​​​​​​​
+						if (#input == 5 and input:sub(1, 2) == "aw") then
+							context:clear_previous_segment()
+							context:clear()
+						end
                         return 1
                     end
                 elseif (key_event.keycode == 117) then

@@ -92,8 +92,8 @@ patch:
       - xform=(<qw>|<op>)=B=
       - xform=(<se>|<il>)=N=
       - xform=(<wd>|<ko>)=M=
-      - xform=(<at>|<yA>)=<=
-      - xform=(<ag>|<hA>)=>=
+      - xform=(<at>|<yA>)=`=
+      - xform=(<zb>|<nZ>)=^=
       - xform=(<zx>|<XZ>)=@=
       - xform=(<vb>|<nm>)=$=
       #
@@ -136,9 +136,9 @@ patch:
       - xform=(<sc>|<ml>)=n=
       - xform=(<cv>|<mC>)=m=
       - xform=(<sdf>|<jkl>)=,=
-      - xform=(<wef>|<jio>)=.=
-      - xform=(<sef>|<jil>)=!=
-      - xform=(<zb>|<nZ>)=?=
+      - xform=(<ag>|<hA>)=.=
+      - xform=(<wef>|<jio>)=!=
+      - xform=(<sef>|<jil>)=?=
       - xform=(<zc>|<CZ>)=#=
       - xform=(<zxc>|<CXZ>)=*=
       - xform=(<xcv>|<mCX>)=&=
@@ -156,8 +156,8 @@ patch:
       - xform=(<23>)=8=
       - xform=(<24>)=9=
       - xform=(<14>)=0=
-      - xform=(<12>)=^=
-      - xform=(<13>)=`=
+      - xform=(<12>)=>=
+      - xform=(<13>)=<=
       #
       - xform=(<6>)=5=
       - xform=(<7>)=4=
@@ -169,8 +169,8 @@ patch:
       - xform=(<89>)=8=
       - xform=(<79>)=9=
       - xform=(<70>)=0=
-      - xform=(<90>)=^=
-      - xform=(<80>)=`=
+      - xform=(<90>)=>=
+      - xform=(<80>)=<=
 
       #- xform/^UU$/<1>/
     
@@ -267,7 +267,7 @@ patch:
 __patch:
 # Rx: 语言模型 {
   - patch/+:
-      __include: grammar:/huayu
+      __include: grammar:/octagram
 # }
 
 
