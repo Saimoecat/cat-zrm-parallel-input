@@ -54,8 +54,8 @@ engine:
     - reverse_lookup_translator
     - script_translator
     - history_translator@repeat_history
-    #- lua_translator@*phone_translator
-    - lua_translator@*date_translator
+    - lua_translator@*phone_translator
+    #- lua_translator@*date_translator
     #- lua_translator@*pinyin_translator
     - lua_translator@*system_translator
     - lua_translator@*desc_translator
@@ -120,7 +120,7 @@ key_binder:
     #- { when: composing, accept: Shift+Shift_L, send: KP_2 }
     #- { when: composing, accept: Shift+Shift_R, send: KP_3 }
     
-    - { when: composing, accept: Return, send: Escape }
+    #- { when: composing, accept: Return, send: Escape }
     - { when: composing, accept: Tab, send: "Shift+Left" }
 
     #- { when: composing, accept: Shift+Shift_L, send: Shift+Left }

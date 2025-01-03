@@ -575,6 +575,18 @@ local function processor(key_event, env)
 			return 1
 		end
 	end
+	
+	-- Enter
+    if (key_event.keycode == 65293) then
+		if (context.caret_pos ~= #input) then
+            context.caret_pos = #input
+            return 1
+		elseif (#input > 0 and context.caret_pos == #input) then
+			context:clear_previous_segment()
+			context:clear()
+			return 1
+        end
+    end
 
     return 2
 end

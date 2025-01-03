@@ -1345,11 +1345,13 @@ local function processor(key_event, env)
     end
 
     -- Enter
-    --[[
     if (key_event.keycode == 65293) then
-
+		if (context.caret_pos ~= #input) then
+            context.caret_pos = #input
+            return 1
+        end
     end
-    --]]
+    
 
     --Esc 恢复保留状态
 	--[[

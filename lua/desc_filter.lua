@@ -58,39 +58,74 @@ local function queryByJane(str)
 	return code:sub(4, #code)
 end
 
+-- 获取辅助编码
+local function getFuCode(zi,input)
+	local code = queryByXing(zi)
+	
+    if (string.match(input, "«") == nil) then
+        return code:sub(1, 2)
+    else
+		local newCode = strUtf8Sub(input,4,getUtf8Len(input) - 4)
+
+        if (getUtf8Len(newCode) == 2) then
+            return code:sub(3, 4)
+        elseif (getUtf8Len(newCode) == 4) then
+            return code:sub(5, 6)
+        else
+            return ""
+        end
+    end
+end
+
 --解析编码
 local function comment (candidate)
     local text = candidate.text
     local preedit = candidate.preedit
 
     local length = getUtf8Len(text)
-    local lastZi = strUtf8Sub(text, length, length)
+	-- 最后一个字
+    local lastZi = strUtf8Sub(text, length, 1)
 
     -- 拆分编码集合
     local groups = {}
     for each in string.gmatch(preedit, "%S+") do
         table.insert(groups, each)
     end
+	-- 最后一个编码
+	local lastCode = groups[#groups]
+	-- 查询编码
+	local res = getFuCode(lastZi,lastCode)
+	-- 返回编码
+	return "〔" .. res .. "〕"
+end
 
-    local code = queryByXing(lastZi)
+--解析手机编码
+local function phoneComment (candidate)
+    local text = candidate.text
+    local preedit = candidate.preedit
+
+    local length = getUtf8Len(text)
 	
-    local lastCode = groups[#groups]
 	
-	local codeLength = getUtf8Len(lastCode) - 2
-
-    if (string.match(lastCode, "«") == nil) then
-        return "〔" .. code:sub(1, 2) .. "〕"
-    else
-		local newCode = strUtf8Sub(lastCode,4,getUtf8Len(lastCode) - 4)
-
-        if (getUtf8Len(newCode) == 2) then
-            return "〔" .. code:sub(3, 4) .. "〕"
-        elseif (getUtf8Len(newCode) == 4) then
-            return "〔" .. code:sub(5, 6) .. "〕"
-        else
-            return ""
-        end
+	-- 拆分编码集合
+    local groups = {}
+    for each in string.gmatch(preedit, "%S+") do
+        table.insert(groups, each)
     end
+	
+	local comment = ""
+	
+	-- 循环解析
+	for i = 1, length do
+		local zi = strUtf8Sub(text, i, 1)
+		local resCode = getFuCode(zi,groups[i])
+		comment = comment .. resCode
+		if (i < length) then
+			comment = comment .. " "
+		end
+	end
+	
+	return comment
 end
 
 --解析编码
@@ -294,9 +329,18 @@ local function ordinaryCandidate (index,env,inp,cand)
 	end
 	
 	if (flag) then
-		local res = comment(cand)
+		local res = ""
+		-- 查询辅助码显示
+		if (env.engine.schema.schema_id == "zrm") then
+			res = comment(cand)
+		elseif (env.engine.schema.schema_id == "zrm_phone") then
+			res = phoneComment(cand)
+		end
+		-- 设置辅助码
 		cand.comment = res
-		if (cand.type == "user_phrase") then
+		
+		-- 判断用户词库
+		if (env.engine.schema.schema_id == "zrm" and cand.type == "user_phrase") then
 			cand.comment = cand.comment.."⚡"
 		end
 		
@@ -324,18 +368,19 @@ local function ordinaryCandidate (index,env,inp,cand)
 	end
 	]]
 	
-
-	local preedit = ""
-	for i, v in ipairs(groups) do
-		local j = #groups - i + 1
-		preedit = preedit .. v
-		if (j <= #preeditArray) then
-			preedit = preedit .. preeditArray[j]
+	-- 设置快速跳转编号
+	if (env.engine.schema.schema_id == "zrm") then
+		local preedit = ""
+		for i, v in ipairs(groups) do
+			local j = #groups - i + 1
+			preedit = preedit .. v
+			if (j <= #preeditArray) then
+				preedit = preedit .. preeditArray[j]
+			end
+			preedit = preedit .. " "
 		end
-		preedit = preedit .. " "
+		cand.preedit = preedit
 	end
-
-	cand.preedit = preedit
  
 	if (index == 1 and #groups == 1) then
 		-- 去掉符号
@@ -350,7 +395,7 @@ local function ordinaryCandidate (index,env,inp,cand)
 	end
 	
 	
-	if (flag == false or #groups > 1 or env.oneFlag ) then
+	if (flag == false or #groups > 1 or env.oneFlag) then
 		return true
 	else 
 		return false
@@ -511,26 +556,40 @@ local function filter(input, env)
 				end
 			end
 		end
-	else
-		-- 其他方案直接上屏
-		for cand in input:iter() do
-			index = index + 1
-			local ordinary = ordinaryCandidate(index,env,inp,cand)
-			if (ordinary) then
-				yield(cand)
+		
+		--清空无编码
+		local composition =  env.engine.context.composition
+		if(not composition:empty()) then
+			local segment = composition:back()
+			if (env.countIndex == 0 and string.find(segment.prompt, "〔") == nil) then
+				env.engine.context:clear()
 			end
 		end
-	end
-
-	
-	--清空无编码
-	local composition =  env.engine.context.composition
-	if(not composition:empty()) then
-		local segment = composition:back()
-		if (env.countIndex == 0 and string.find(segment.prompt, "〔") == nil) then
-			env.engine.context:clear()
+	else
+		-- 手机提示符候选标识
+		local phoneFlag = false
+		-- 其他方案直接上屏
+		for cand in input:iter() do
+			if (cand.type == "phone") then
+				phoneFlag = true
+			end
+			-- 判断手机提示符
+			if (phoneFlag) then
+				-- 只显示提示符
+				if (cand.type == "phone") then
+					yield(cand)
+				end
+			else
+				index = index + 1
+				local ordinary = ordinaryCandidate(index,env,inp,cand)
+				if (ordinary) then
+					yield(cand)
+				end
+			end
+			
 		end
 	end
+	
 
 end
 
