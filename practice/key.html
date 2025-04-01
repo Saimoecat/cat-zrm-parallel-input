@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>猫师自然码并击</title>
+	</head>
+	<link href="./css/index.css" rel="stylesheet" />
+	<link href="./css/input.css" rel="stylesheet" />
+	<link href="./css/show.css" rel="stylesheet" />
+	<link href="./css/keyboard.css" rel="stylesheet" />
+	<link href="./css/table.css" rel="stylesheet" />
+	<link href="./css/alert.css" rel="stylesheet" />
+	<body>
+		<!-- 输入框 -->
+		<div class="input" onclick="openSetting()">
+			<span class="after" id="after"></span>
+			<span class="current" id="current"></span>
+			<span class="before" id="before"></span>
+		</div>
+		<!-- 显示区 -->
+		<div class="show">
+			<div class="item"></div>
+			<div class="item"></div>
+			<div class="item"></div>
+			<div class="item"></div>
+		</div>
+		<!-- 键盘 -->
+		<div class="keyboard">
+			<ul class="keys">
+				<li style="flex: 4">~</li>
+				<li class="letter" id="1" style="flex: 4">
+					<div>1</div>
+				</li>
+				<li class="letter" id="2" style="flex: 4">
+					<div>2</div>
+				</li>
+				<li class="letter" id="3" style="flex: 4">
+					<div>3</div>
+				</li>
+				<li class="letter" id="4" style="flex: 4">
+					<div>4</div>
+				</li>
+				<li class="letter" id="5" style="flex: 4">
+					<div>5</div>
+				</li>
+				<li class="letter" id="6" style="flex: 4">
+					<div>6</div>
+				</li>
+				<li class="letter" id="7" style="flex: 4">
+					<div>7</div>
+				</li>
+				<li class="letter" id="8" style="flex: 4">
+					<div>8</div>
+				</li>
+				<li class="letter" id="9" style="flex: 4">
+					<div>9</div>
+				</li>
+				<li class="letter" id="0" style="flex: 4">
+					<div>0</div>
+				</li>
+				<li style="flex: 4">-</li>
+				<li style="flex: 4">=</li>
+				<li style="flex: 6">Backspace</li>
+			</ul>
+			<ul class="keys">
+				<li style="flex: 6">Tab</li>
+				<li class="letter" id="q" style="flex: 4">
+					<div>Q</div>
+				</li>
+				<li class="letter" id="w" style="flex: 4">
+					<div>W</div>
+				</li>
+				<li class="letter" id="e" style="flex: 4">
+					<div>E</div>
+				</li>
+				<li class="letter" id="r" style="flex: 4">
+					<div>R</div>
+				</li>
+				<li class="letter" id="t" style="flex: 4">
+					<div>T</div>
+				</li>
+				<li class="letter" id="y" style="flex: 4">
+					<div>Y</div>
+				</li>
+				<li class="letter" id="u" style="flex: 4">
+					<div>U</div>
+				</li>
+				<li class="letter" id="i" style="flex: 4">
+					<div>I</div>
+				</li>
+				<li class="letter" id="o" style="flex: 4">
+					<div>O</div>
+				</li>
+				<li class="letter" id="p" style="flex: 4">
+					<div>P</div>
+				</li>
+				<li style="flex: 4">[</li>
+				<li style="flex: 4">]</li>
+				<li style="flex: 4">\</li>
+			</ul>
+			<ul class="keys">
+				<li style="flex: 7">Caps</li>
+				<li class="letter" id="a" style="flex: 4">
+					<div>A</div>
+
+				</li>
+				<li class="letter" id="s" style="flex: 4">
+					<div>S</div>
+
+				</li>
+				<li class="letter" id="d" style="flex: 4">
+					<div>D</div>
+
+				</li>
+				<li class="letter" id="f" style="flex: 4">
+					<div>F</div>
+
+				</li>
+				<li class="letter" id="g" style="flex: 4">
+					<div>G</div>
+
+				</li>
+				<li class="letter" id="h" style="flex: 4">
+					<div>H</div>
+
+				</li>
+				<li class="letter" id="j" style="flex: 4">
+					<div>J</div>
+
+				</li>
+				<li class="letter" id="k" style="flex: 4">
+					<div>K</div>
+
+				</li>
+				<li class="letter" id="l" style="flex: 4">
+					<div>L</div>
+
+				</li>
+				<li class="letter" id=";" style="flex: 4">
+					<div>;</div>
+				</li>
+				<li style="flex: 4">'</li>
+				<li style="flex: 7">Enter</li>
+			</ul>
+			<ul class="keys">
+				<li style="flex: 9">Shift</li>
+				<li class="letter" id="z" style="flex: 4">
+					<div>Z</div>
+				</li>
+				<li class="letter" id="x" style="flex: 4">
+					<div>X</div>
+				</li>
+				<li class="letter" id="c" style="flex: 4">
+					<div>C</div>
+				</li>
+				<li class="letter" id="v" style="flex: 4">
+					<div>V</div>
+				</li>
+				<li class="letter" id="b" style="flex: 4">
+					<div>B</div>
+				</li>
+				<li class="letter" id="n" style="flex: 4">
+					<div>N</div>
+				</li>
+				<li class="letter" id="m" style="flex: 4">
+					<div>M</div>
+				</li>
+				<li class="letter" id="," style="flex: 4">
+					<div>,</div>
+				</li>
+				<li class="letter" id="." style="flex: 4">
+					<div>.</div>
+				</li>
+				<li class="letter" id="/" style="flex: 4">
+					<div>/</div>
+				</li>
+				<li style="flex: 9">Shift</li>
+			</ul>
+			<ul class="keys">
+				<li style="flex: 5">Ctrl</li>
+				<li style="flex: 5">Fn</li>
+				<li style="flex: 5">Win</li>
+				<li style="flex: 5">Alt</li>
+				<li class="letter" id="␣" style="flex: 18">
+					<div>Space</div>
+				</li>
+				<li style="flex: 5">Alt</li>
+				<li style="flex: 5">Win</li>
+				<li style="flex: 5">Menu</li>
+				<li style="flex: 5">Ctrl</li>
+			</ul>
+		</div>
+		<div class="table">
+			<table class="content" id="tableLeft"></table>
+			<table class="content" id="tableRight"></table>
+		</div>
+		<!-- 设置 -->
+		<div class="alert" id="alert" onmousedown="" style="display: none;">
+			<div class="setting" onclick="e.stopPropagation();">
+				<form class="form" onsubmit="execute(event)">
+					<label for="txt">
+						<textarea class="text" id="txt" maxlength="4096" placeholder="请输入文本" rows="4"></textarea>
+					</label>
+					<div class="checkboxes">
+						<div class="checkbox">
+							<label>
+								<input checked id="showCode" name="showCode" type="checkbox"><span>显示编码</span>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input checked id="showDesc" name="showDesc" type="checkbox"><span>显示详情</span>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input checked id="showKeyboard" name="showKeyboard" type="checkbox"><span>显示键位</span>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input id="showAuxiliary" name="showAuxiliary" disabled onchange="showAuxiliaryChange()"
+									type="checkbox"><span>辅助编码</span>
+							</label>
+						</div>
+					</div>
+					<div class="radio">
+						<label>
+							<input checked disabled name="auxiliary" onclick="auxiliaryValueChange(this)" type="radio"
+								value="1"><span>一级辅</span>
+						</label>
+						<label>
+							<input disabled name="auxiliary" onclick="auxiliaryValueChange(this)" type="radio"
+								value="2"><span>二级辅</span>
+						</label>
+						<label>
+							<input disabled name="auxiliary" onclick="auxiliaryValueChange(this)" type="radio"
+								value="3"><span>三级辅</span>
+						</label>
+					</div>
+					<button class="button" type="submit">提&nbsp;交</button>
+				</form>
+			</div>
+		</div>
+	</body>
+	<script src="./js/key.js"></script>
+	<script src="./js/keyMap.js"></script>
+	<script src="./js/fuMap.js"></script>
+	<script src="./js/table.js"></script>
+	<script src="./js/index.js"></script>
+</html>
